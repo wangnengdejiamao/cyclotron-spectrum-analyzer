@@ -41,6 +41,9 @@ code/
                            search, profiled χ²(B), branch polishing, MCMC
   chi2_maps.py             profiled χ² on a (B, kT) grid
   benchmark_fit.py         EQ Cet and BS Tri validation fits
+  emission_lines.py        Balmer / He I / He II 4686 emission-line
+                           measurements and the He II/Hbeta and
+                           Balmer-decrement diagnostics
   lightcurve_analysis.py   ZTF detrending, Lomb-Scargle, alias control,
                            folded light curves
   lightcurve_panels.py     long-term + folded light-curve figure
@@ -60,6 +63,8 @@ data/fits/
 
 data/maps/{src}_BT_map.npz      profiled χ² on the (B, kT) grid
 data/lightcurves/{src}_lc_results.json   periods, alias powers, FAP levels
+data/emission_lines.json        per-line EW, flux, FWHM and the He II/Hβ
+data/emission_lines.csv         and Balmer-decrement diagnostics
 
 benchmarks/
   EQCet_residual_spectrum.txt          full-resolution phase-differenced
