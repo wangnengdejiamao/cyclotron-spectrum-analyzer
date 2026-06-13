@@ -46,6 +46,8 @@ code/
   lightcurve_panels.py     long-term + folded light-curve figure
   plot_profile_curves.py   χ²(B) profile figures (sources + benchmarks)
   replot_all.py            spectral decomposition figures
+  polarcat_compare_v2.py   places the targets on the PolarCat B-vs-P_orb
+                           plane (the population figure)
   polarcat_gaia_correlate.py  population B-vs-period analysis (exploratory)
   update_macros.py         regenerates the LaTeX number macros
   pubstyle.py              shared matplotlib style

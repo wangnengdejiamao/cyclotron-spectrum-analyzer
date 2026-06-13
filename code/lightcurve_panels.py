@@ -3,7 +3,7 @@
 lightcurve_panels.py — combined ZTF light-curve figure for the paper.
 
 One row per source:
-  left  : long-term light curve (g, r) with 25-day rolling medians,
+  left  : long-term light curve (g, r) with 40-day rolling medians,
   right : phase-folded, detrended light curve at the adopted period
           (g, r points) with phase-binned median trend lines.
 The source without a significant period (J0022) shows only the long-term
