@@ -44,6 +44,8 @@ code/
   emission_lines.py        Balmer / He I / He II 4686 emission-line
                            measurements and the He II/Hbeta and
                            Balmer-decrement diagnostics
+  emission_profiles.py     H-alpha/H-beta line-profile fits in velocity
+                           space (single vs narrow+broad Gaussian)
   lightcurve_analysis.py   ZTF detrending, Lomb-Scargle, alias control,
                            folded light curves
   lightcurve_panels.py     long-term + folded light-curve figure
@@ -65,6 +67,7 @@ data/maps/{src}_BT_map.npz      profiled χ² on the (B, kT) grid
 data/lightcurves/{src}_lc_results.json   periods, alias powers, FAP levels
 data/emission_lines.json        per-line EW, flux, FWHM and the He II/Hβ
 data/emission_lines.csv         and Balmer-decrement diagnostics
+data/emission_profiles.json     H-alpha/H-beta velocity-profile fits
 
 benchmarks/
   EQCet_residual_spectrum.txt          full-resolution phase-differenced
