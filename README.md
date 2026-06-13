@@ -60,7 +60,10 @@ data/maps/{src}_BT_map.npz      profiled χ² on the (B, kT) grid
 data/lightcurves/{src}_lc_results.json   periods, alias powers, FAP levels
 
 benchmarks/
-  bench_EQCet.json, bench_BSTri.json   validation fits
+  EQCet_residual_spectrum.txt          full-resolution phase-differenced
+  BSTri_residual_spectrum.txt          cyclotron residual spectra
+                                       (wavelength [m], relative flux)
+  bench_EQCet.json, bench_BSTri.json   validation fit results
   BSTri_BT_map.npz                     BS Tri (B, kT) grid
 
 figures/   PDF versions of the paper figures

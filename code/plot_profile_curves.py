@@ -25,11 +25,11 @@ from matplotlib import cm
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pubstyle
-sys.path.insert(0, '/Users/ljm/Desktop/cyc/优化算法/m2_optimized')
 from cyclotron_m2 import cal_cy_spec
 
 pubstyle.apply()
-OUT = '/Users/ljm/Desktop/cyc/paper_v2'
+OUT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   os.pardir))   # repo root
 KEV_J = 1.602176634e-16
 SHORT = {'J0005': 'DESI J0005+2941', 'J0022': 'DESI J0022+1340',
          'J0749': 'DESI J0749+3654', 'J0035': 'LAMOST J0035+4333'}
@@ -131,26 +131,23 @@ def _bench_row(axL, axR, key, bench_name, src_lab, note='', spec_xlim=None):
     if spec_xlim is not None:   # display truncation only; fit uses full spectrum
         axL.set_xlim(left=spec_xlim, right=w_m.max() * 1e10 * 1.004)
 
-    npz = f'{OUT}/data/{key}_BT_map.npz'
-    if os.path.exists(npz):
-        z = np.load(npz)
-        sc = max(float(z['chi2_red']), 1.0)
-        refm = min(float(z['chi2'].min()), float(z['best_chi2']))
-        env = (z['chi2'].min(axis=0) - refm) / sc   # min over kT per B
-        draw_curves(axR, npz, src_lab, best_BkT=(B, kT),
-                    envelope=(np.append(z['B'], B), np.append(env, 0.0)))
-    else:                      # fall back to 1-D profile only
-        Be = np.array(r['B_grid'] + [r['B']])
-        de = np.array(r['profile_dchi2_rescaled'] + [0.0])
-        o = np.argsort(Be)
-        axR.plot(Be[o], np.maximum(de[o], 0.3), '-', color='k', lw=1.6,
-                 label='profile')
-        for thr in (1, 4, 9):
-            axR.axhline(thr, ls=':', lw=0.7, color='0.55')
-        axR.plot(B, 0.3, '*', ms=12, mfc='gold', mec='k', mew=0.6,
-                 clip_on=False, zorder=6)
-        axR.set_yscale('log'); axR.set_ylim(0.3, 4000)
-        axR.legend(fontsize=6.5, loc='lower right')
+    # right: 1-D profiled chi^2(B) from the full-resolution fit
+    Be = np.append(np.array(r['B_grid']), B)
+    de = np.append(np.array(r['profile_dchi2_rescaled']), 0.0)
+    o = np.argsort(Be)
+    axR.plot(Be[o], np.maximum(de[o], 0.3), '-', color='k', lw=1.6,
+             label=r'profiled $\Delta\tilde\chi^2(B)$')
+    for thr, lab in [(1, r'1$\sigma$'), (4, r'2$\sigma$'), (9, r'3$\sigma$')]:
+        axR.axhline(thr, ls=':', lw=0.7, color='0.55')
+        axR.text(94, thr, lab, fontsize=6.5, va='center', ha='right',
+                 color='0.5')
+    axR.axvline(B, color='0.4', ls='--', lw=0.7, zorder=1)
+    axR.plot(B, 0.3, '*', ms=12, mfc='gold', mec='k', mew=0.6,
+             clip_on=False, zorder=6)
+    axR.set_yscale('log')
+    axR.set_ylim(0.3, 4000)
+    axR.set_xlim(12, 95)
+    axR.legend(fontsize=7, loc='upper left')
     axR.axvline(r['B_lit'], color='k', ls='-.', lw=0.9)
     axR.text(0.97, 0.93, f"lit. {r['B_lit']:.1f} MG", transform=axR.transAxes,
              fontsize=7, ha='right', va='top', color='0.3')
