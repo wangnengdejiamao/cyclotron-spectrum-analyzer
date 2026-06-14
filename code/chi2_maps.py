@@ -111,24 +111,26 @@ def map_eqcet():
     chi2fn = make_chi2(w_m, fl, e)
     _ = chi2fn([34, 2, 60, 6])
     rr = json.load(open(f'{OUT}/data/bench_EQCet.json'))
-    chi = np.full((len(KT_GRID), len(B_GRID)), np.inf)
+    Bg = np.arange(22.0, 50.01, 2.0)        # B grid around the EQ Cet field
+    Kt = np.geomspace(0.5, 30.0, 10)
+    chi = np.full((len(Kt), len(Bg)), np.inf)
     lo = np.array([10.0, 0.0])
     hi = np.array([89.0, 9.0])
     prev = np.array([rr['theta'], rr['logLambda']])
-    for i, j in snake(len(KT_GRID), len(B_GRID)):
-        kT, B = KT_GRID[i], B_GRID[j]
+    for i, j in snake(len(Kt), len(Bg)):
+        kT, B = Kt[i], Bg[j]
 
         def obj(s):
             s = np.clip(s, lo, hi)
             return chi2fn([B, kT, s[0], s[1]])
         res = minimize(obj, prev, method='Nelder-Mead',
-                       options=dict(maxfev=160, fatol=0.05, xatol=2e-3))
+                       options=dict(maxfev=90, fatol=0.05, xatol=2e-3))
         chi[i, j] = res.fun
         prev = np.clip(res.x, lo, hi)
-        if j == len(B_GRID) - 1:
-            print(f'  EQCet kT={kT:5.2f} done (row {i+1}/{len(KT_GRID)})',
+        if j == len(Bg) - 1:
+            print(f'  EQCet kT={kT:5.2f} done (row {i+1}/{len(Kt)})',
                   flush=True)
-    np.savez(f'{OUT}/data/EQCet_BT_map.npz', B=B_GRID, kT=KT_GRID, chi2=chi,
+    np.savez(f'{OUT}/data/EQCet_BT_map.npz', B=Bg, kT=Kt, chi2=chi,
              best=np.array([rr['B'], rr['kT'], rr['theta'],
                             rr['logLambda']]),
              chi2_red=rr['chi2_red'], best_chi2=rr['chi2'])
@@ -140,28 +142,30 @@ def map_bstri():
     geometry (80-89 deg), as in benchmark_fit.py."""
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from benchmark_fit import load, make_chi2, BENCH
-    w_m, fl, e = load(BENCH['BSTri'])
+    w_m, fl, e = load(BENCH['BSTri'])      # restricted to the hump region
     chi2fn = make_chi2(w_m, fl, e)
     _ = chi2fn([22, 5, 87, 8])
     rr = json.load(open(f'{OUT}/data/bench_BSTri.json'))
-    chi = np.full((len(KT_GRID), len(B_GRID)), np.inf)
+    Bg = np.arange(12.0, 40.01, 2.0)        # B grid around the BS Tri field
+    Kt = np.geomspace(0.5, 30.0, 10)
+    chi = np.full((len(Kt), len(Bg)), np.inf)
     lo = np.array([80.0, 0.0])      # theta restricted to eclipse value
     hi = np.array([89.0, 9.0])
     prev = np.array([min(max(rr['theta'], 80.0), 89.0), rr['logLambda']])
-    for i, j in snake(len(KT_GRID), len(B_GRID)):
-        kT, B = KT_GRID[i], B_GRID[j]
+    for i, j in snake(len(Kt), len(Bg)):
+        kT, B = Kt[i], Bg[j]
 
         def obj(s):
             s = np.clip(s, lo, hi)
             return chi2fn([B, kT, s[0], s[1]])
         res = minimize(obj, prev, method='Nelder-Mead',
-                       options=dict(maxfev=160, fatol=0.05, xatol=2e-3))
+                       options=dict(maxfev=90, fatol=0.05, xatol=2e-3))
         chi[i, j] = res.fun
         prev = np.clip(res.x, lo, hi)
-        if j == len(B_GRID) - 1:
-            print(f'  BSTri kT={kT:5.2f} done (row {i+1}/{len(KT_GRID)})',
+        if j == len(Bg) - 1:
+            print(f'  BSTri kT={kT:5.2f} done (row {i+1}/{len(Kt)})',
                   flush=True)
-    np.savez(f'{OUT}/data/BSTri_BT_map.npz', B=B_GRID, kT=KT_GRID, chi2=chi,
+    np.savez(f'{OUT}/data/BSTri_BT_map.npz', B=Bg, kT=Kt, chi2=chi,
              best=np.array([rr['B'], rr['kT'], rr['theta'],
                             rr['logLambda']]),
              chi2_red=rr['chi2_red'], best_chi2=rr['chi2'])

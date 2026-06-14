@@ -107,59 +107,60 @@ def curves_figure():
     print('B_profiles_kT.pdf saved')
 
 
-def _bench_row(axL, axR, key, bench_name, src_lab, note='', spec_xlim=None):
-    """One validation source: residual spectrum + best-fit model (left),
-    fixed-kT profiled chi^2(B) curves + kT-free envelope (right)."""
+def _bench_row(axL, axR, key, src_lab, note='', legend=True):
+    """One validation source, drawn exactly like the per-source panels of
+    Figure~\\ref{fig:B_profiles}: the residual spectrum and best-fit model
+    over the fitted wavelength range (left), and the fixed-kT chi^2(B)
+    curves with the kT-free envelope from the (B, kT) map (right).
+    The plotted data are written to data/bench_{key}_spectrum.txt and the
+    right-panel grid is data/{key}_BT_map.npz."""
     from benchmark_fit import load, BENCH
     w_m, fl, e = load(BENCH[key])
     r = json.load(open(f'{OUT}/data/bench_{key}.json'))
     B, kT, th, ll = r['B'], r['kT'], r['theta'], r['logLambda']
-    spec = cal_cy_spec(w_m, kT * KEV_J, B * 100.0, np.deg2rad(th),
-                       10.0 ** ll)
+    spec = cal_cy_spec(w_m, kT * KEV_J, B * 100.0, np.deg2rad(th), 10.0 ** ll)
     shape = spec / spec.max()
     wgt = 1.0 / e ** 2
     A = np.sum(fl * shape * wgt) / np.sum(shape ** 2 * wgt)
+    model = A * shape
 
     axL.plot(w_m * 1e10, fl, color='0.5', lw=0.45, alpha=0.9,
-             label='observed residual spectrum', zorder=1)
-    axL.plot(w_m * 1e10, A * shape, color=pubstyle.COLORS['model'], lw=1.5,
+             label='residual spectrum', zorder=1)
+    axL.plot(w_m * 1e10, model, color=pubstyle.COLORS['model'], lw=1.5,
              label=f'fit ($B$={B:.1f} MG)', zorder=3)
+    axL.set_xlim(w_m.min() * 1e10, w_m.max() * 1e10)   # data range only
     axL.set_ylabel(r'$F_\lambda$ (arbitrary)')
     axL.legend(fontsize=7.0, loc='upper right')
     axL.set_title(src_lab + (f' ({note})' if note else ''), loc='left',
                   fontsize=9, pad=3)
-    if spec_xlim is not None:   # display truncation only; fit uses full spectrum
-        axL.set_xlim(left=spec_xlim, right=w_m.max() * 1e10 * 1.004)
 
-    # right: 1-D profiled chi^2(B) from the full-resolution fit
-    Be = np.append(np.array(r['B_grid']), B)
-    de = np.append(np.array(r['profile_dchi2_rescaled']), 0.0)
-    o = np.argsort(Be)
-    axR.plot(Be[o], np.maximum(de[o], 0.3), '-', color='k', lw=1.6,
-             label=r'profiled $\Delta\tilde\chi^2(B)$')
-    for thr, lab in [(1, r'1$\sigma$'), (4, r'2$\sigma$'), (9, r'3$\sigma$')]:
-        axR.axhline(thr, ls=':', lw=0.7, color='0.55')
-        axR.text(94, thr, lab, fontsize=6.5, va='center', ha='right',
-                 color='0.5')
-    axR.axvline(B, color='0.4', ls='--', lw=0.7, zorder=1)
-    axR.plot(B, 0.3, '*', ms=12, mfc='gold', mec='k', mew=0.6,
-             clip_on=False, zorder=6)
-    axR.set_yscale('log')
-    axR.set_ylim(0.3, 4000)
-    axR.set_xlim(12, 95)
-    axR.legend(fontsize=7, loc='upper left')
+    # data behind the figure
+    np.savetxt(f'{OUT}/data/bench_{key}_spectrum.txt',
+               np.column_stack([w_m * 1e10, fl, e, model]),
+               header='wavelength_A  residual_flux  error  best_fit_model',
+               fmt='%.6e')
+
+    # right: fixed-kT curves + kT-free envelope from the (B, kT) map,
+    # identical in style to the source panels of Figure~\ref{fig:B_profiles}
+    npz = f'{OUT}/data/{key}_BT_map.npz'
+    z = np.load(npz)
+    sc = max(float(z['chi2_red']), 1.0)
+    refm = min(float(z['chi2'].min()), float(z['best_chi2']))
+    env = (z['chi2'].min(axis=0) - refm) / sc
+    draw_curves(axR, npz, src_lab, best_BkT=(B, kT), legend=legend,
+                envelope=(np.append(z['B'], B), np.append(env, 0.0)))
     axR.axvline(r['B_lit'], color='k', ls='-.', lw=0.9)
-    axR.text(0.97, 0.93, f"lit. {r['B_lit']:.1f} MG", transform=axR.transAxes,
+    axR.text(0.97, 0.94, f"lit. {r['B_lit']:.1f} MG", transform=axR.transAxes,
              fontsize=7, ha='right', va='top', color='0.3')
     axR.set_ylabel(r'rescaled $\Delta\tilde\chi^2$')
 
 
 def bench_figure():
     fig, axes = plt.subplots(2, 2, figsize=(7.2, 5.4))
-    _bench_row(axes[0, 0], axes[0, 1], 'EQCet', 'EQ Cet', 'EQ Cet',
-               note='blind')
-    _bench_row(axes[1, 0], axes[1, 1], 'BSTri', 'BS Tri', 'BS Tri',
-               note=r'$\theta$ fixed by eclipse; hump region')
+    _bench_row(axes[0, 0], axes[0, 1], 'EQCet', 'EQ Cet',
+               note='blind', legend=True)
+    _bench_row(axes[1, 0], axes[1, 1], 'BSTri', 'BS Tri',
+               note=r'$\theta$ fixed; hump region', legend=False)
     axes[1, 0].set_xlabel(r'Wavelength [$\mathrm{\AA}$]')
     axes[1, 1].set_xlabel(r'$B$ [MG]')
     fig.subplots_adjust(hspace=0.32, wspace=0.27, left=0.09, right=0.98,

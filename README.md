@@ -72,7 +72,9 @@ benchmarks/
   BSTri_residual_spectrum.txt          cyclotron residual spectra
                                        (wavelength [m], relative flux)
   bench_EQCet.json, bench_BSTri.json   validation fit results
-  BSTri_BT_map.npz                     BS Tri (B, kT) grid
+  bench_EQCet_spectrum.txt             data behind Fig. 1 (left panels):
+  bench_BSTri_spectrum.txt             wavelength, residual flux, error, model
+  EQCet_BT_map.npz, BSTri_BT_map.npz   (B, kT) grids behind Fig. 1 (right)
 
 figures/   PDF versions of the paper figures
 ```
