@@ -159,7 +159,7 @@ def bench_figure():
     _bench_row(axes[0, 0], axes[0, 1], 'EQCet', 'EQ Cet', 'EQ Cet',
                note='blind')
     _bench_row(axes[1, 0], axes[1, 1], 'BSTri', 'BS Tri', 'BS Tri',
-               note=r'$\theta$ fixed by eclipse', spec_xlim=4500.0)
+               note=r'$\theta$ fixed by eclipse; hump region')
     axes[1, 0].set_xlabel(r'Wavelength [$\mathrm{\AA}$]')
     axes[1, 1].set_xlabel(r'$B$ [MG]')
     fig.subplots_adjust(hspace=0.32, wspace=0.27, left=0.09, right=0.98,

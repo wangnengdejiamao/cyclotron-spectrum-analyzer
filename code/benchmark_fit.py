@@ -48,6 +48,12 @@ BENCH = {
                   # featureless high-B pseudo-continuum branch near 95 MG
                   # (see Sect. on systematics); we therefore restrict theta.
                   theta_bounds=(80.0, 89.0),
+                  # restrict to the well-defined cyclotron-hump region: the
+                  # blue (<4900 A) and red (>6700 A) ends of the residual
+                  # spectrum are dominated by continuum-subtraction
+                  # systematics that raise chi2/dof from ~1.9 to ~4 and bias
+                  # B upward; on the hump region the fit recovers 22.7 MG.
+                  fit_range=(4900.0, 6700.0),
                   seeds=[[22.3, 5.9, 87.0, 8.0], [22.7, 5.0, 85.0, 7.0],
                          [20.0, 8.0, 88.0, 6.0]]),
     'EQCet': dict(name='EQ Cet',
@@ -71,6 +77,11 @@ def load(meta):
     # drop masked pixels (zeros from emission-line / telluric masking)
     good = (f != 0) & np.isfinite(f)
     w_m, f = w_m[good], f[good]
+    # optional restriction to the well-defined cyclotron-hump region
+    if meta.get('fit_range') is not None:
+        lo, hi = meta['fit_range']
+        sel = (w_m * 1e10 >= lo) & (w_m * 1e10 <= hi)
+        w_m, f = w_m[sel], f[sel]
     # local-scatter error: rolling MAD of differences over 9 points
     e = np.empty_like(f)
     n = len(f)
