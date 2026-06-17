@@ -1,0 +1,110 @@
+{
+  "source": "J1553",
+  "input_spectrum": "/Users/ljm/Desktop/cyc/paper_v2/data/J1553_sdss/J1553_sdss_spectrum.txt",
+  "output_spectrum": "/Users/ljm/Desktop/cyc/paper_v2/data/J1553_sdss/J1553_sdss_donor_subtracted.txt",
+  "method": "common M-dwarf scale from red molecular-band structure; independent quadratic nuisance continuum per segment",
+  "fit_segments_A": [
+    [
+      6000.0,
+      6500.0
+    ],
+    [
+      6630.0,
+      6850.0
+    ],
+    [
+      7000.0,
+      7500.0
+    ],
+    [
+      7750.0,
+      8150.0
+    ],
+    [
+      8350.0,
+      8800.0
+    ]
+  ],
+  "best_subtype": "M5",
+  "rv_kms": -100.0,
+  "template_amplitude_flux_1e-17": 34.32857324672876,
+  "template_amplitude_err": 0.7377961461102297,
+  "amplitude_significance": 46.528534240405115,
+  "chi2": 1261.457930785908,
+  "chi2_no_donor": 3426.362429346458,
+  "delta_chi2": 2164.90449856055,
+  "n_fit": 972,
+  "accepted_diagnostic": true,
+  "subtype_scan": [
+    {
+      "subtype": "M0",
+      "rv_kms": -200.0,
+      "amplitude": 23.923292427326963,
+      "chi2": 2272.3281884620396,
+      "delta_chi2": 602.0382840437437
+    },
+    {
+      "subtype": "M1",
+      "rv_kms": -200.0,
+      "amplitude": 28.169730018806018,
+      "chi2": 2158.607993890563,
+      "delta_chi2": 1206.0517785376765
+    },
+    {
+      "subtype": "M2",
+      "rv_kms": -100.0,
+      "amplitude": 27.823958252683628,
+      "chi2": 1914.3616662896536,
+      "delta_chi2": 1499.8014116510005
+    },
+    {
+      "subtype": "M3",
+      "rv_kms": -200.0,
+      "amplitude": 29.304754626247288,
+      "chi2": 1617.768420920095,
+      "delta_chi2": 1807.008702184606
+    },
+    {
+      "subtype": "M4",
+      "rv_kms": -100.0,
+      "amplitude": 31.052529952271733,
+      "chi2": 1465.4477322193995,
+      "delta_chi2": 1976.929591235585
+    },
+    {
+      "subtype": "M5",
+      "rv_kms": -100.0,
+      "amplitude": 34.32857324672876,
+      "chi2": 1261.457930785908,
+      "delta_chi2": 2164.90449856055
+    },
+    {
+      "subtype": "M6",
+      "rv_kms": -100.0,
+      "amplitude": 35.782418751503755,
+      "chi2": 1262.5022995902905,
+      "delta_chi2": 2179.875023864694
+    },
+    {
+      "subtype": "M7",
+      "rv_kms": -100.0,
+      "amplitude": 36.81743401403813,
+      "chi2": 1382.793312122396,
+      "delta_chi2": 2057.4283066276807
+    },
+    {
+      "subtype": "M8",
+      "rv_kms": -200.0,
+      "amplitude": 32.41906328160708,
+      "chi2": 1874.2937349348285,
+      "delta_chi2": 1366.0801317791047
+    },
+    {
+      "subtype": "M9",
+      "rv_kms": -200.0,
+      "amplitude": 33.51839823192313,
+      "chi2": 1889.656270487664,
+      "delta_chi2": 1464.5119891422862
+    }
+  ]
+}

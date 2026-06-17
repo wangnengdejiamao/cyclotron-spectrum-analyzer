@@ -59,8 +59,8 @@ import corner as corner_mod
 
 warnings.filterwarnings('ignore')
 
-sys.path.insert(0, '/Users/ljm/Desktop/cyc/优化算法/m2_optimized')
-from cyclotron_m2 import cal_cy_spec  # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cyclotron_m2 import cal_cy_spec  # noqa: E402  (vendored alongside this file)
 
 # ---------------------------------------------------------------------------
 # Constants & paths
@@ -70,13 +70,22 @@ MG_T = 100.0                     # MG -> Tesla
 R_SUN_CM = 6.957e10
 PC_CM = 3.0857e18
 
-KOESTER_DIR = '/Users/ljm/Desktop/cyc/long expose/koester2'
-OUT_BASE = '/Users/ljm/Desktop/cyc/paper_v2'
+# Package root: override with the CYC_ROOT env var, else infer from this file's
+# location (this file lives in <root>/code/).
+OUT_BASE = os.environ.get('CYC_ROOT') or os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__)))
+RAW = os.path.join(OUT_BASE, 'data', 'raw')
+# The raw Koester (2010) DA grid is ONLY needed to rebuild data/koester_cache.npz
+# from scratch; whenever that cache is present the raw grid is never read (see
+# KoesterGrid below and DATA_SOURCES.md).  Point KOESTER_DIR at a local copy of
+# the grid or set the env var; defaults to data/koester/.
+KOESTER_DIR = os.environ.get('KOESTER_DIR') or os.path.join(
+    OUT_BASE, 'data', 'koester')
 
 SOURCES = {
     'J0005': dict(
         name='DESI J000558.72+294103.8',
-        fits='/Users/ljm/Desktop/csst/long expose/desi/39628472875746272.fits',
+        fits=os.path.join(RAW, '39628472875746272.fits'),
         kind='desi', flux_scale=1e-17,
         dist_pc=604.0, dist_err=98.0, ebv=0.0416,
         seeds=[[6250, 7.25, 25500, 56.8, 0.723, 57.8, 5.43],
@@ -84,14 +93,14 @@ SOURCES = {
                [6500, 7.25, 40600, 57.2, 0.72, 65.9, 8.99]]),
     'J0022': dict(
         name='DESI J002253.23+134040.7',
-        fits='/Users/ljm/Desktop/csst/long expose/desi/39628114199839787.fits',
+        fits=os.path.join(RAW, '39628114199839787.fits'),
         kind='desi', flux_scale=1e-17,
         dist_pc=583.0, dist_err=38.0, ebv=0.0677,
         seeds=[[10000, 8.0, 30000, 44.6, 12.3, 71.3, 6.5],
                [10000, 8.0, 30000, 60.0, 5.0, 60.0, 5.0]]),
     'J0749': dict(
         name='DESI J074917.11+365427.9',
-        fits='/Users/ljm/Desktop/csst/long expose/desi/39633019182516048.fits',
+        fits=os.path.join(RAW, '39633019182516048.fits'),
         kind='desi', flux_scale=1e-17,
         dist_pc=946.0, dist_err=135.0, ebv=0.0544,
         seeds=[[17500, 9.0, 79000, 48.0, 10.0, 50.0, 5.0],
@@ -99,8 +108,8 @@ SOURCES = {
                [12000, 8.5, 50000, 40.2, 12.2, 72.9, 3.4]]),
     'J0035': dict(
         name='LAMOST J003553.36+433341.4',
-        fits='/Users/ljm/Desktop/csst/long expose/lamost/DR11LRS_256702174.fits',
-        fits_alt='/Users/ljm/Desktop/csst/long expose/lamost/DR11LRS_475312249.fits',
+        fits=os.path.join(RAW, 'DR11LRS_256702174.fits'),
+        fits_alt=os.path.join(RAW, 'DR11LRS_475312249.fits'),
         kind='lamost', flux_scale=1.0,     # relative flux; no absolute anchor
         dist_pc=None, dist_err=None, ebv=0.0582,
         seeds=[[10000, 8.0, 30000, 50.0, 5.0, 60.0, 5.0],
@@ -384,7 +393,11 @@ class JointModel:
 NONLIN_BOUNDS = [
     (6000.0, 40000.0),    # T_wd
     (7.0, 9.49),          # logg
-    (8000.0, 100000.0),   # T_spot
+    (8000.0, 50000.0),    # T_spot: capped at the physical accretion-cap
+                          # range; above ~40-50 kK the optical blackbody
+                          # shape is unconstrained (Rayleigh-Jeans), so a
+                          # higher bound only adds a degenerate blue
+                          # continuum that can rail to 10^5 K
     (10.0, 100.0),        # B [MG]
     (0.3, 30.0),          # kT [keV]
     (10.0, 89.0),         # theta [deg]

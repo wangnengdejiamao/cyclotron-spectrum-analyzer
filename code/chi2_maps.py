@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import joint_pipeline as jp
 from cyclotron_m2 import cal_cy_spec
 
-OUT = '/Users/ljm/Desktop/cyc/paper_v2'
+OUT = os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KEV_J = 1.602176634e-16
 
 B_GRID = np.arange(12.0, 95.01, 2.0)

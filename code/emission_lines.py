@@ -39,8 +39,7 @@ import pubstyle
 from joint_pipeline import SOURCES, load_spectrum
 
 pubstyle.apply()
-OUT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   os.pardir))   # repo root
+OUT = os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C_KMS = 299792.458
 
 # Instrumental FWHM (km/s) used to deconvolve the line widths.
@@ -58,11 +57,12 @@ LINES = {
     'HeI6678':  (6678.2, 18.0, [(6605, 6640), (6705, 6742)]),
     'HeI5876':  (5875.6, 13.0, [(5805, 5840), (5905, 5945)]),  # Na D blend on red
 }
-# pretty labels for the table / figure
-LABEL = {'Hbeta': r'H$\beta$', 'HeII4686': r'He\,{\sc ii} 4686',
+# Pretty labels for the table / figure.  Keep the ion labels explicit:
+# Matplotlib text extraction can mangle small-caps Roman numerals.
+LABEL = {'Hbeta': r'H$\beta$', 'HeII4686': r'He II $\lambda4686$',
          'Hgamma': r'H$\gamma$', 'Hdelta': r'H$\delta$',
-         'HeI4471': r'He\,{\sc i} 4471', 'Halpha': r'H$\alpha$',
-         'HeI6678': r'He\,{\sc i} 6678', 'HeI5876': r'He\,{\sc i} 5876'}
+         'HeI4471': r'He I $\lambda4471$', 'Halpha': r'H$\alpha$',
+         'HeI6678': r'He I $\lambda6678$', 'HeI5876': r'He I $\lambda5876$'}
 
 
 def _gauss(x, a, x0, sig, c0, c1):
@@ -212,19 +212,22 @@ def main():
 
 def make_figure(results):
     srcs = list(SOURCES)
-    fig, axes = plt.subplots(len(srcs), 2, figsize=(7.2, 8.4),
+    fig, axes = plt.subplots(len(srcs), 2, figsize=(7.2, 8.0),
                              gridspec_kw=dict(width_ratios=[1.7, 1.0]))
     blue_lines = [('Hdelta', 4101.7), ('Hgamma', 4340.5),
-                  ('HeII4686', 4685.7), ('Hbeta', 4861.3), ('HeI4471', 4471.5)]
+                  ('HeI4471', 4471.5), ('HeII4686', 4685.7),
+                  ('Hbeta', 4861.3)]
     red_lines = [('Halpha', 6562.8), ('HeI6678', 6678.2)]
+    line_color = '#b2182b'
+    label_box = dict(facecolor='white', edgecolor='none', alpha=0.78, pad=0.25)
     for i, s in enumerate(srcs):
         meta = SOURCES[s]
         w, f, e = load_spectrum(meta)
         axL, axR = axes[i, 0], axes[i, 1]
-        for ax, (lo, hi), marks in [(axL, (4050, 4980), blue_lines),
-                                    (axR, (6440, 6720), red_lines)]:
+        for ax, (lo, hi), marks in [(axL, (4050, 4935), blue_lines),
+                                    (axR, (6440, 6750), red_lines)]:
             m = (w >= lo) & (w <= hi)
-            ax.plot(w[m], f[m], color='0.25', lw=0.5)
+            ax.plot(w[m], f[m], color='0.18', lw=0.55)
             ymax = np.nanpercentile(f[m], 99.3)
             ymin = np.nanpercentile(f[m], 1.0)
             pad = 0.12 * (ymax - ymin)
@@ -232,19 +235,21 @@ def make_figure(results):
             ax.set_xlim(lo, hi)
             for key, lam in marks:
                 if key in results[s]['lines']:
-                    ax.axvline(lam, color='crimson', lw=0.6, ls=':', alpha=0.6)
-                    ax.text(lam, ymax + pad * 0.1, LABEL[key].split()[0]
-                            if 'He' not in key else key.replace('HeII', 'HeII ')
-                            .replace('HeI', 'HeI '),
-                            fontsize=5.5, rotation=90, ha='center', va='bottom',
-                            color='crimson')
+                    ax.axvline(lam, color=line_color, lw=0.6, ls=':', alpha=0.65)
+                    if i == 0:
+                        ax.text(lam, 0.985, LABEL[key],
+                                transform=ax.get_xaxis_transform(), fontsize=6.3,
+                                ha='center', va='top', color=line_color,
+                                bbox=label_box)
         axL.text(0.015, 0.93, meta['name'], transform=axL.transAxes,
-                 fontsize=7.5, va='top')
+                 fontsize=7.5, va='top',
+                 bbox=dict(facecolor='white', edgecolor='none', alpha=0.75, pad=0.4))
         hb = results[s]['EW_Hbeta']
         rr = results[s]['HeII_Hbeta']
         axR.text(0.96, 0.93,
-                 f"EW(H$\\beta$)={hb:.0f}\\,Å\nHe\\,II/H$\\beta$={rr:.2f}",
-                 transform=axR.transAxes, fontsize=6.5, va='top', ha='right')
+                 f"EW(H$\\beta$) = {hb:.0f} $\\AA$\nHe II/H$\\beta$ = {rr:.2f}",
+                 transform=axR.transAxes, fontsize=6.5, va='top', ha='right',
+                 bbox=dict(facecolor='white', edgecolor='none', alpha=0.88, pad=0.5))
         if i < len(srcs) - 1:
             axL.set_xticklabels([]); axR.set_xticklabels([])
     axes[-1, 0].set_xlabel(r'Wavelength [$\mathrm{\AA}$]')

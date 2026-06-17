@@ -30,17 +30,16 @@ from cyclotron_m2 import cal_cy_spec
 
 KEV_J = 1.602176634e-16
 MG_T = 100.0
-_HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.abspath(os.path.join(_HERE, os.pardir))   # repo root
-_BENCH_DIR = os.path.join(OUT, 'benchmarks')
+OUT = os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# We fit the full-resolution phase-differenced residual spectra, i.e. the
-# unbinned cyclotron-only spectra derived from the individual-phase
-# observations of Campbell et al. (2008, EQ Cet) and Kolbin et al.
-# (2022, BS Tri). Each file has two columns: wavelength [m], relative flux.
+# We fit the full-resolution phase-differenced residual spectra
+# (processed_spectrum_original.txt), i.e. the unbinned cyclotron-only
+# spectra derived from the individual-phase observations of Campbell
+# et al. (2008, EQ Cet) and Kolbin et al. (2022, BS Tri).
 BENCH = {
     'BSTri': dict(name='BS Tri',
-                  path=os.path.join(_BENCH_DIR, 'BSTri_residual_spectrum.txt'),
+                  path=os.path.join(OUT, 'data', 'raw', 'benchmarks',
+                                    'BSTri_processed_spectrum.txt'),
                   wave_unit='m', B_lit=22.7, B_lit_err=0.4, theta_lit=87.0,
                   # BS Tri is eclipsing: its bright-phase viewing angle is
                   # fixed by the eclipse solution to ~87 deg.  Without this
@@ -57,7 +56,8 @@ BENCH = {
                   seeds=[[22.3, 5.9, 87.0, 8.0], [22.7, 5.0, 85.0, 7.0],
                          [20.0, 8.0, 88.0, 6.0]]),
     'EQCet': dict(name='EQ Cet',
-                  path=os.path.join(_BENCH_DIR, 'EQCet_residual_spectrum.txt'),
+                  path=os.path.join(OUT, 'data', 'raw', 'benchmarks',
+                                    'EQCet_processed_spectrum.txt'),
                   wave_unit='m', B_lit=34.0, B_lit_err=2.0, theta_lit=None,
                   seeds=[[34.8, 1.4, 58.0, 6.2], [34.0, 3.7, 60.0, 4.4]]),
 }

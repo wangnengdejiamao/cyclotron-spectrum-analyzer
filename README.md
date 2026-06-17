@@ -1,9 +1,9 @@
 # cyclotron-spectrum-analyzer
 
-Code and data behind *"Magnetic fields and orbital periods of four
-magnetic cataclysmic variables"* (Lin et al.). The package reproduces
-the fits, figures, and tabulated numbers of the paper from the public
-survey spectra and light curves.
+Code and data behind *"Magnetic fields and orbital periods of four magnetic
+cataclysmic variables"* (Lin et al.).  Everything needed to regenerate the
+figures and the tabulated magnetic-field results from the bundled fit products
+is included; re-fitting from the raw survey spectra is also supported.
 
 The four targets are
 `J0005` = DESI J000558.72+294103.8,
@@ -14,90 +14,133 @@ The four targets are
 
 ## What the code does
 
-The spectrum of a polar is fitted with one forward model that adds a
-Koester white-dwarf photosphere, an accretion-spot blackbody, and an
-isothermal constant-Λ cyclotron component. All components are varied
-together in an inverse-variance-weighted χ², so the cyclotron
-parameters do not inherit the bias of a separately subtracted
-continuum. The harmonic-number ambiguity is mapped by profiling χ²
-over the field strength B; uncertainties come from an MCMC over all ten
-parameters, with the error bars rescaled by sqrt(χ²_min/dof).
+Each spectrum is fitted with a single forward model that adds a Koester
+white-dwarf photosphere, an accretion-spot blackbody, and an isothermal
+constant-Λ cyclotron component,
 
-## Install
+```
+F_λ = s_wd · Koester(T_wd, log g) + s_spot · Planck(T_spot)
+                                  + A_cyc · Cyc(B, kT, θ, Λ)
+```
+
+fitted directly to the de-reddened, line-masked, 25-Å binned spectrum with
+inverse-variance weights.  The three amplitudes are solved by bounded linear
+least squares at every trial of the non-linear parameters; the global search
+is a differential-evolution optimisation; the harmonic-number ambiguity is
+mapped by profiling χ² over the field strength `B`; and uncertainties come from
+an MCMC over all ten parameters.  The quoted field error is
+`σ_B = sqrt(σ_formal² + (0.026·B)²)`, the 2.6 % floor being calibrated on
+benchmark polars (EQ Cet, BS Tri, MQ Dra, PZ Vir).
+
+## Quick start
 
 ```bash
 pip install -r requirements.txt
+./reproduce.sh                      # or:  PYTHON=/path/to/python ./reproduce.sh
 ```
 
-## Files
+This prints the Table 3 numbers and writes every paper figure to `figures/`.
+**No archive downloads are needed** — the Koester DA grid is bundled in compact
+resampled form as `data/koester_cache.npz`, so the white-dwarf component is
+rebuilt without the full 140 MB model grid.
+
+To check just the headline numbers:
+
+```bash
+CYC_ROOT=$PWD python code/reproduce_numbers.py
+```
+
+## How each figure / number is produced
+
+All paths below are relative to the repository root.  `{src}` ∈
+`{J0005, J0022, J0749, J0035}`.
+
+| paper item | script | key inputs |
+|------------|--------|------------|
+| Table 3 (B, kT, θ, logΛ, σ_B) | `code/reproduce_numbers.py` | `validation_candidates/full_refit/data/{src}_full_refit.json`, `…/branch_error_summary.json` |
+| Joint continuum–cyclotron fits | `validation_candidates/full_refit/code/regen_joint_fullrefit.py` | `…/{src}_full_refit.json`, `data/raw/`, Koester cache |
+| Profiled χ²(B), fixed-kT families | `validation_candidates/full_refit/code/plot_full_refit_profiles.py` | `…/{src}_full_refit.json`, `…/{src}_kt_family.npz` |
+| Competing harmonic branches (App. C) | `validation_candidates/full_refit/code/plot_branch_decomposition.py` | `…/{src}_full_refit.json` |
+| Benchmark validation | `code/plot_profile_curves.py` | `data/bench_*_spectrum.txt`, `data/*_BT_map.npz` |
+| Long-term + folded light curves | `code/lightcurve_panels.py` | `data/raw/ZTF_*.csv`, `data/{src}_lc_results.json` |
+| Emission-line diagnostics | `code/emission_lines.py` | `data/emission_lines.{json,csv}`, `data/raw/` |
+| J0005 cyclotron corner | `code/make_corner.py` | `data/J0005_mcmc_chain.npy` |
+| SDSS validation panel (App. B) | `validation_candidates/full_refit/code/plot_full_refit_profiles.py` | `data/*_sdss/`, `…/{MQDra,PZVir,J1344}_full_refit.json` |
+| Field-error budget | `validation_candidates/full_refit/code/branch_errors.py` | `…/{src}_full_refit.json` |
+
+## Re-fitting from scratch (slow path)
+
+The bundled `*_full_refit.json` solutions can be regenerated from the raw
+spectra.  This needs the **full** Koester grid (not the cache):
+
+```bash
+# 1. download the Koester (2010) DA grid from SVO (see DATA_SOURCES.md)
+export KOESTER_DIR=/path/to/koester2
+rm -f data/koester_cache.npz             # force a rebuild from the raw grid
+# 2. profiled χ²(B) scan + branch polishing for one source
+CYC_ROOT=$PWD python validation_candidates/full_refit/code/full_refit_scan.py J0749
+```
+
+Because the search uses differential evolution and MCMC, re-fits are stochastic
+and take minutes per source; the profiled χ²(B) field, which sets the adopted
+`B`, is the deterministic part and recovers the published value.
+
+## Layout
 
 ```
 code/
-  cyclotron_m2.py          numba cyclotron kernel (harmonic emissivities
-                           + constant-Λ transfer; K2 and the Boltzmann
-                           factor in exponentially scaled form, stable to
-                           kT ~ 0.1 keV)
-  joint_pipeline.py        joint continuum+cyclotron fit: DE global
-                           search, profiled χ²(B), branch polishing, MCMC
+  cyclotron_m2.py          numba cyclotron kernel (harmonic emissivities,
+                           constant-Λ transfer; exponentially scaled K2 and
+                           Boltzmann factor, stable down to kT ~ 0.1 keV)
+  joint_pipeline.py        joint continuum+cyclotron fit: Koester grid loader,
+                           DE global search, profiled χ²(B), branch polishing,
+                           MCMC
   chi2_maps.py             profiled χ² on a (B, kT) grid
-  benchmark_fit.py         EQ Cet and BS Tri validation fits
-  emission_lines.py        Balmer / He I / He II 4686 emission-line
-                           measurements and the He II/Hbeta and
-                           Balmer-decrement diagnostics
-  emission_profiles.py     H-alpha/H-beta line-profile fits in velocity
-                           space (single vs narrow+broad Gaussian)
-  lightcurve_analysis.py   ZTF detrending, Lomb-Scargle, alias control,
-                           folded light curves
+  benchmark_fit.py         EQ Cet / BS Tri validation fits
+  emission_lines.py        Balmer / He I / He II 4686 line measurements
+  emission_profiles.py     Hα/Hβ velocity-profile fits
+  lightcurve_analysis.py   ZTF detrending, Lomb–Scargle, alias control, folding
   lightcurve_panels.py     long-term + folded light-curve figure
-  plot_profile_curves.py   χ²(B) profile figures (sources + benchmarks)
-  replot_all.py            spectral decomposition figures
-  regen_bstri_profile.py   BS Tri benchmark profile (hump-region fit)
-  update_macros.py         regenerates the LaTeX number macros
+  plot_profile_curves.py   χ²(B) benchmark-validation figure
+  make_corner.py           cyclotron-parameter corner plot
+  reproduce_numbers.py     prints the Table 3 magnetic-field results
   pubstyle.py              shared matplotlib style
-
-data/fits/
-  {src}_binned_spectrum.txt   dereddened, line-masked, 25-Å binned spectrum
-  {src}_fit_components.txt     wave, F_obs, err, total, WD, spot, cyclotron
-  {src}_joint_results.json     adopted + alternative solutions, posteriors
-  {src}_mcmc_chain.npy         thinned MCMC chains
-
-data/maps/{src}_BT_map.npz      profiled χ² on the (B, kT) grid
-data/lightcurves/{src}_lc_results.json   periods, alias powers, FAP levels
-data/emission_lines.json        per-line EW, flux, FWHM and the He II/Hβ
-data/emission_lines.csv         and Balmer-decrement diagnostics
-data/emission_profiles.json     H-alpha/H-beta velocity-profile fits
-
-benchmarks/
-  EQCet_residual_spectrum.txt          full-resolution phase-differenced
-  BSTri_residual_spectrum.txt          cyclotron residual spectra
-                                       (wavelength [m], relative flux)
-  bench_EQCet.json, bench_BSTri.json   validation fit results
-  bench_EQCet_spectrum.txt             data behind Fig. 1 (left panels):
-  bench_BSTri_spectrum.txt             wavelength, residual flux, error, model
-  EQCet_BT_map.npz, BSTri_BT_map.npz   (B, kT) grids behind Fig. 1 (right)
-
-figures/   PDF versions of the paper figures
+validation_candidates/full_refit/
+  code/                    the adopted (full-refit) fits and their figures
+  data/                    {src}_full_refit.json (adopted + alternative
+                           branches, posteriors), kt_family.npz,
+                           branch_error_summary.json
+data/
+  raw/                     DESI/LAMOST FITS, ZTF CSVs, benchmark spectra
+  koester_cache.npz        resampled Koester DA cube (replaces the 140 MB grid)
+  {src}_binned_spectrum.txt   de-reddened, line-masked, 25-Å binned spectrum
+  {src}_fit_components.txt    wave, F_obs, err, total, WD, spot, cyclotron
+  {src}_joint_results.json    per-source fit record (profiled χ², branches)
+  {src}_mcmc_chain.npy        thinned joint-MCMC chain (10 parameters)
+  {src}_BT_map.npz            profiled χ² on the (B, kT) grid
+  {src}_lc_results.json       periods, alias powers, FAP levels
+  *_sdss/                     SDSS validation-polar spectra
+  emission_lines.{json,csv}, emission_profiles.json
+figures/                   PDF versions of the paper figures
+DATA_SOURCES.md            provenance and archive links for every input
+reproduce.sh               regenerates all figures + numbers
 ```
-
-## Reproducing a fit
-
-```bash
-# set the input paths at the top of code/joint_pipeline.py first
-python code/joint_pipeline.py --source J0005
-```
-
-The input spectra are not redistributed here: the DESI DR1 coadds,
-LAMOST DR11 spectra, and ZTF light curves come from the respective
-public archives, and the Koester (2010) DA model grid from the SVO
-theory server.
 
 ## Notes
 
 - χ² is inverse-variance weighted; posterior errors are rescaled by
-  sqrt(χ²_min/dof) to absorb the observed scatter.
-- The harmonic ambiguity is reported, not suppressed: alternative
-  acceptable (B, n) solutions appear in the profiled χ²(B) curves.
-- The kernel uses the exponentially scaled forms exp(-x(γ-1)) with
-  x = m_e c²/kT and the scaled K2. The unscaled exp(-x) underflows for
-  kT below ~0.7 keV, which silently turns the model into a featureless
-  Rayleigh-Jeans spectrum; the scaled forms avoid this.
+  `sqrt(χ²_min/dof)`.
+- The harmonic ambiguity is reported, not suppressed: alternative acceptable
+  `(B, n)` solutions are kept in each `*_full_refit.json` and shown in the
+  branch-decomposition figures.
+- White-dwarf and hot-spot temperatures and flux ratios are nuisance parameters
+  and are not quoted.
+- The kernel uses exponentially scaled forms; the unscaled `exp(-x)` underflows
+  for kT below ~0.7 keV and silently flattens the model to Rayleigh–Jeans.
+
+## License
+
+Code under the MIT License (see `LICENSE`).  Bundled raw survey data remain
+subject to the policies of the DESI, LAMOST, ZTF, SDSS, and SVO archives
+(see `DATA_SOURCES.md`); please cite those sources and this paper if you use
+them.

@@ -1,0 +1,58 @@
+# Data provenance
+
+Every input that the analysis depends on is listed here, with its public
+origin.  The derived products under `data/` and
+`validation_candidates/full_refit/data/` are our own and are released with
+this package; the raw survey spectra and light curves are redistributed here
+for convenience and remain subject to the original archives' usage policies.
+
+## Science targets (raw spectra — `data/raw/`)
+
+| target | file | archive |
+|--------|------|---------|
+| DESI J000558.72+294103.8 (J0005) | `39628472875746272.fits` | DESI DR1 coadd |
+| DESI J002253.23+134040.7 (J0022) | `39628114199839787.fits` | DESI DR1 coadd |
+| DESI J074917.11+365427.9 (J0749) | `39633019182516048.fits` | DESI DR1 coadd |
+| LAMOST J003553.36+433341.4 (J0035)        | `DR11LRS_256702174.fits` | LAMOST DR11 low-resolution |
+| LAMOST J003553.36+433341.4 (J0035, 2016)  | `DR11LRS_475312249.fits` | LAMOST DR11 low-resolution |
+
+DESI: <https://data.desi.lbl.gov/> (DR1).  LAMOST: <https://www.lamost.org/dr11/>.
+
+## Light curves (`data/raw/ZTF_*.csv`)
+
+ZTF DR photometry, retrieved from the IRSA/ZTF light-curve service
+(<https://irsa.ipac.caltech.edu/Missions/ztf.html>), one CSV per target,
+named by the query coordinates.
+
+## White-dwarf model atmospheres
+
+Koester (2010) DA LTE model grid, from the Spanish Virtual Observatory
+Theoretical Spectra service:
+<http://svo2.cab.inta-csic.es/theory/newov2/index.php> (Koester DA models).
+
+The full grid (~140 MB of `da*.dk.dat.txt` files, T_eff 5000-80000 K,
+log g 6.5-9.5) is **not** redistributed here.  Instead we ship the resampled
+interpolation cube actually used by the fits,
+`data/koester_cache.npz` (~23 MB), which `joint_pipeline.KoesterGrid` loads
+directly — so reproducing the figures and numbers needs no grid download.
+To re-fit truly from scratch, download the grid from SVO, point `KOESTER_DIR`
+at it, and delete the cache so it is rebuilt.
+
+## Benchmark systems (`data/raw/benchmarks/`)
+
+Phase-differenced cyclotron residual spectra of two well-studied polars,
+used to validate the field recovery:
+
+| system | file | field reference |
+|--------|------|-----------------|
+| EQ Cet | `EQCet_processed_spectrum.txt` | Schwope et al. (2008) |
+| BS Tri | `BSTri_processed_spectrum.txt` | Kolbin et al. (2022) |
+
+The SDSS validation polars (MQ Dra, PZ Vir, SDSS J1344+2044) under
+`data/*_sdss/` are donor-subtracted / extracted SDSS spectra from the SDSS
+public data releases (<https://www.sdss.org/>).
+
+## Distances and reddening
+
+Gaia DR3 parallaxes (distances in `code/joint_pipeline.py:SOURCES`) and
+`E(B-V)` from the Schlegel/Schlafly & Finkbeiner dust maps.

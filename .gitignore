@@ -3,3 +3,5 @@ __pycache__/
 .DS_Store
 *.aux
 *.log
+# local raw Koester grid, if a user drops one in (the compact cache is shipped)
+data/koester/

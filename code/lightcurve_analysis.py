@@ -33,8 +33,8 @@ pubstyle.apply()
 
 warnings.filterwarnings('ignore')
 
-BASE = '/Users/ljm/Desktop/csst/long expose'
-OUT = '/Users/ljm/Desktop/cyc/paper_v2'
+BASE = os.path.join(os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'raw')
+OUT = os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SOURCES = {
     'J0005': dict(name='DESI J000558.72+294103.8',
@@ -45,8 +45,7 @@ SOURCES = {
                   csv=f'{BASE}/ZTF_RA117.32130_DEC36.90776.csv',
                   fold_2p=True),   # catalogue P_orb = 0.0558375 d = 2x LS peak
     'J0035': dict(name='LAMOST J003553.36+433341.4',
-                  csv=(f'{BASE}/每个源分析/LAMOST_J003553.36+433341.4/'
-                       'ZTF_RA8.9724_DEC43.5615.csv')),
+                  csv=f'{BASE}/ZTF_RA8.9724_DEC43.5615.csv'),
 }
 
 FMIN, FMAX = 2.0, 40.0      # cycles / day  (36 min .. 12 h)

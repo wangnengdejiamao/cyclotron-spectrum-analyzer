@@ -34,8 +34,7 @@ import pubstyle
 from joint_pipeline import SOURCES, load_spectrum
 
 pubstyle.apply()
-OUT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   os.pardir))   # repo root
+OUT = os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C_KMS = 299792.458
 VWIN = 2200.0            # +/- velocity window fitted (km/s)
 INSTR = {'desi': 90.0, 'lamost': 165.0}     # instrumental FWHM (km/s)

@@ -1,0 +1,97 @@
+{
+ "f_sys": 0.025946765612272136,
+ "benchmarks": [
+  [
+   "EQ Cet",
+   34.8,
+   34.0
+  ],
+  [
+   "BS Tri",
+   22.4,
+   22.7
+  ],
+  [
+   "MQ Dra",
+   61.6,
+   59.0
+  ],
+  [
+   "PZ Vir",
+   63.3,
+   63.0
+  ]
+ ],
+ "branches": [
+  {
+   "source": "J0022",
+   "branch": "ADOPT",
+   "B": 64.35,
+   "B_err_formal": 0.157,
+   "B_err_sys": 1.67,
+   "B_err": 1.68,
+   "acceptable": true,
+   "adopted": true
+  },
+  {
+   "source": "J0022",
+   "branch": "alt",
+   "B": 77.7,
+   "B_err_formal": 0.209,
+   "B_err_sys": 2.02,
+   "B_err": 2.03,
+   "acceptable": true,
+   "adopted": false
+  },
+  {
+   "source": "J0749",
+   "branch": "ADOPT",
+   "B": 29.26,
+   "B_err_formal": 0.122,
+   "B_err_sys": 0.76,
+   "B_err": 0.77,
+   "acceptable": true,
+   "adopted": true
+  },
+  {
+   "source": "J0749",
+   "branch": "alt",
+   "B": 96.39,
+   "B_err_formal": 0.968,
+   "B_err_sys": 2.5,
+   "B_err": 2.68,
+   "acceptable": true,
+   "adopted": false
+  },
+  {
+   "source": "J0749",
+   "branch": "EXCL",
+   "B": 45.31,
+   "B_err_formal": 0.282,
+   "B_err_sys": 1.18,
+   "B_err": 1.21,
+   "acceptable": false,
+   "adopted": false
+  },
+  {
+   "source": "J0035",
+   "branch": "ADOPT",
+   "B": 51.13,
+   "B_err_formal": 0.518,
+   "B_err_sys": 1.33,
+   "B_err": 1.42,
+   "acceptable": true,
+   "adopted": true
+  },
+  {
+   "source": "J0035",
+   "branch": "alt",
+   "B": 51.2,
+   "B_err_formal": 0.553,
+   "B_err_sys": 1.33,
+   "B_err": 1.44,
+   "acceptable": true,
+   "adopted": false
+  }
+ ]
+}

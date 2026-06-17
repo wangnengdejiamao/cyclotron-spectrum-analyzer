@@ -1,7 +1,10 @@
-numpy
-scipy
-astropy
-matplotlib
-numba
-emcee
-corner
+# Tested with Python 3.9.12 and the versions below.  Any reasonably recent
+# release of each should work; these are pinned only to record what produced
+# the figures and numbers in the paper.
+numpy==1.24.3
+scipy==1.13.1
+astropy==6.0.1
+matplotlib==3.9.4
+numba==0.60.0
+emcee==3.1.4
+corner==2.2.1

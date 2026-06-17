@@ -24,14 +24,14 @@ import pubstyle
 pubstyle.apply()
 from lightcurve_analysis import load_ztf, rolling_median, SOURCES
 
-OUT = '/Users/ljm/Desktop/cyc/paper_v2'
+OUT = os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COL = dict(zg='#1b7837', zr='#c1272d')
 
 # (label, fold period in minutes);  J0749 folded at 2 x P_phot.
 # J0022 has no significant period and is omitted from this figure.
 ROWS = [
-    ('J0005', 'DESI J0005+2941', 105.349, None),
-    ('J0749', 'DESI J0749+3654', 80.406, r'$=2P_{\rm phot}$'),
+    ('J0005', 'DESI J0005+2941', 105.34857383655087, None),
+    ('J0749', 'DESI J0749+3654', 80.4062, r'$=2P_{\rm phot}$'),
     ('J0035', 'LAMOST J0035+4333', 143.765, '1-d alias unresolved'),
 ]
 
@@ -46,6 +46,31 @@ def phase_binned(ph, dm, nb=24):
             err.append(1.4826 * np.median(np.abs(dm[m] - np.median(dm[m])))
                        / np.sqrt(m.sum()))
     return np.array(cent), np.array(med), np.array(err)
+
+
+def centre_faint_minimum(detr, P_day, target_phase=0.5, nb=40):
+    """Return a phase shift that places the deepest binned median at target."""
+    all_ph, all_dm = [], []
+    for t, dm in detr.values():
+        all_ph.append((t / P_day) % 1.0)
+        all_dm.append(dm)
+    ph = np.concatenate(all_ph)
+    dm = np.concatenate(all_dm)
+    med = np.full(nb, np.nan)
+    for k in range(nb):
+        m = (ph >= k / nb) & (ph < (k + 1) / nb)
+        if m.sum() >= 3:
+            med[k] = np.median(dm[m])
+    dip_phase = (np.nanargmax(med) + 0.5) / nb
+    return target_phase - dip_phase
+
+
+def combined_binned(detr, P_day, phase_shift=0.0, nb=40):
+    ph_all, dm_all = [], []
+    for t, dm in detr.values():
+        ph_all.append((t / P_day + phase_shift) % 1.0)
+        dm_all.append(dm)
+    return phase_binned(np.concatenate(ph_all), np.concatenate(dm_all), nb=nb)
 
 
 def main():
@@ -87,26 +112,38 @@ def main():
                 s.set_visible(False)
             continue
         P_day = P_min / 1440.0
-        for b in ('zg', 'zr'):
+        phase_shift = centre_faint_minimum(detr, P_day) if src == 'J0005' else 0.0
+        nbins = 40 if src == 'J0005' else 24
+        if src == 'J0005':
+            axR.axvspan(0.47, 0.53, color='0.87', zorder=0)
+            axR.axvspan(1.47, 1.53, color='0.87', zorder=0)
+        fold_bands = ('zg', 'zr')
+        for b in fold_bands:
             if b not in detr:
                 continue
             t, dm = detr[b]
-            ph = (t / P_day) % 1.0
+            ph = (t / P_day + phase_shift) % 1.0
             axR.plot(np.concatenate([ph, ph + 1]),
                      np.concatenate([dm, dm]), '.', ms=1.8, color=COL[b],
                      alpha=0.3, rasterized=True)
-            c, m, er = phase_binned(ph, dm)
+            c, m, er = phase_binned(ph, dm, nb=nbins)
             axR.errorbar(np.concatenate([c, c + 1]),
                          np.concatenate([m, m]),
                          yerr=np.concatenate([er, er]), fmt='o-', ms=3.5,
                          lw=1.3, color=COL[b], mec='k', mew=0.4,
                          ecolor=COL[b], capsize=0, zorder=5)
+        if src == 'J0005':
+            c, m, er = combined_binned(detr, P_day, phase_shift, nb=40)
+            axR.plot(np.concatenate([c, c + 1]), np.concatenate([m, m]),
+                     color='k', lw=1.5, zorder=7)
         axR.invert_yaxis()
         axR.axhline(0, color='0.6', ls=':', lw=0.6)
         axR.set_ylabel(r'$\Delta$mag')
         lab = f'$P$ = {P_min:.3f} min'
         if note:
             lab += f'  {note}'
+        if src == 'J0005':
+            lab += '  (minimum centred)'
         axR.text(0.5, 1.02, lab, transform=axR.transAxes, ha='center',
                  va='bottom', fontsize=7.5)
         axR.set_xlim(0, 2)

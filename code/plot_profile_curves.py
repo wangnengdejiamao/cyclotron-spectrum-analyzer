@@ -22,19 +22,21 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from matplotlib.lines import Line2D
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pubstyle
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cyclotron_m2 import cal_cy_spec
 
 pubstyle.apply()
-OUT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   os.pardir))   # repo root
+OUT = os.environ.get('CYC_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KEV_J = 1.602176634e-16
 SHORT = {'J0005': 'DESI J0005+2941', 'J0022': 'DESI J0022+1340',
          'J0749': 'DESI J0749+3654', 'J0035': 'LAMOST J0035+4333'}
 
-def draw_curves(ax, npz, label, best_BkT, legend=True, envelope=None):
+def draw_curves(ax, npz, label, best_BkT, legend=True, envelope=None,
+                note=True):
     """chi^2(B) at fixed grid temperatures bracketing the best-fit kT,
     plus (optionally) the full kT-free profile envelope. The star marks
     the adopted solution at Delta chi^2 = 0 (plotted at the display
@@ -65,13 +67,22 @@ def draw_curves(ax, npz, label, best_BkT, legend=True, envelope=None):
     ax.plot(B0, 0.3, '*', ms=12, mfc='gold', mec='k', mew=0.6, zorder=6,
             clip_on=False)
     ax.set_yscale('log')
-    ax.set_ylim(0.3, 4000)
+    ax.set_ylim(0.22, 4000)
     ax.set_xlim(B.min(), B.max())
-    ax.text(0.03, 0.95, label, transform=ax.transAxes, va='top',
-            fontsize=9)
+    ax.text(0.03, 0.94, label, transform=ax.transAxes, va='top',
+            fontsize=8.5,
+            bbox=dict(facecolor='white', edgecolor='none', alpha=0.82,
+                      pad=0.6))
     if legend:
         ax.legend(fontsize=6.0, loc='lower right', ncol=2,
                   handlelength=1.3, columnspacing=0.8)
+    elif note:
+        ax.text(0.03, 0.055,
+                'coloured: fixed $kT$\nblack: $kT$ free',
+                transform=ax.transAxes, fontsize=6.2, va='bottom',
+                bbox=dict(facecolor='white', edgecolor='none',
+                          alpha=0.88, pad=0.5),
+                zorder=10)
 
 
 def envelope_from_json(src):
@@ -91,17 +102,37 @@ def envelope_from_json(src):
 def curves_figure():
     fig, axes = plt.subplots(2, 2, figsize=(7.0, 5.4), sharex=True,
                              sharey=True)
+    # secondary chi2(B) minima (competing harmonic / high-B branches),
+    # marked so the multiple solutions are explicit; all are excluded.
+    SECONDARY = {'J0022': [(78.0, 23.0)],
+                 'J0749': [(77.0, 76.0), (93.0, 13.0)]}
     for k, (ax, src) in enumerate(zip(axes.ravel(), SHORT)):
         z = np.load(f'{OUT}/data/{src}_BT_map.npz')
         best = z['best']
         draw_curves(ax, f'{OUT}/data/{src}_BT_map.npz', SHORT[src],
-                    best_BkT=(best[3], best[4]),
-                    envelope=envelope_from_json(src))
+                    best_BkT=(best[3], best[4]), legend=False,
+                    envelope=envelope_from_json(src), note=False)
+        for bs, ds in SECONDARY.get(src, []):
+            ax.plot(bs, ds, 'v', ms=6.5, mfc='none', mec='crimson',
+                    mew=1.1, zorder=8, clip_on=False)
+            ax.annotate(f'{bs:.0f} MG\n({ds**0.5:.1f}$\\sigma$)',
+                        xy=(bs, ds), xytext=(bs, min(ds * 5, 2500)),
+                        color='crimson', fontsize=5.6, ha='center',
+                        va='bottom', zorder=8)
     for ax in axes[1]:
         ax.set_xlabel(r'$B$ [MG]')
     for ax in axes[:, 0]:
         ax.set_ylabel(r'rescaled $\Delta\tilde\chi^2$')
-    fig.subplots_adjust(wspace=0.05, hspace=0.07)
+    handles = [
+        Line2D([0], [0], color=cm.viridis(0.55), lw=1.2,
+               label=r'fixed $kT$ grid'),
+        Line2D([0], [0], color='k', lw=1.6,
+               label=r'$kT$ free envelope'),
+    ]
+    fig.legend(handles=handles, loc='upper center', ncol=2, frameon=False,
+               bbox_to_anchor=(0.53, 0.995), fontsize=7.0,
+               handlelength=1.7, columnspacing=1.4)
+    fig.subplots_adjust(wspace=0.05, hspace=0.07, top=0.925)
     fig.savefig(f'{OUT}/figures/B_profiles_kT.pdf')
     plt.close(fig)
     print('B_profiles_kT.pdf saved')
@@ -151,7 +182,9 @@ def _bench_row(axL, axR, key, src_lab, note='', legend=True):
                 envelope=(np.append(z['B'], B), np.append(env, 0.0)))
     axR.axvline(r['B_lit'], color='k', ls='-.', lw=0.9)
     axR.text(0.97, 0.94, f"lit. {r['B_lit']:.1f} MG", transform=axR.transAxes,
-             fontsize=7, ha='right', va='top', color='0.3')
+             fontsize=7, ha='right', va='top', color='0.3',
+             bbox=dict(facecolor='white', edgecolor='none', alpha=0.78,
+                       pad=0.4))
     axR.set_ylabel(r'rescaled $\Delta\tilde\chi^2$')
 
 
