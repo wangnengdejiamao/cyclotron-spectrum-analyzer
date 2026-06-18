@@ -1,7 +1,8 @@
 # cyclotron-spectrum-analyzer
 
-Code and data behind *"Magnetic fields and orbital periods of four magnetic
-cataclysmic variables"* (Lin et al.).  Everything needed to regenerate the
+Code and data behind *"Magnetic-field constraints for four magnetic
+cataclysmic variables from simultaneous continuum and cyclotron modelling"*
+(Lin et al.).  Everything needed to regenerate the
 figures and the tabulated magnetic-field results from the bundled fit products
 is included; re-fitting from the raw survey spectra is also supported.
 
@@ -57,7 +58,7 @@ All paths below are relative to the repository root.  `{src}` ∈
 
 | paper item | script | key inputs |
 |------------|--------|------------|
-| Table 3 (B, kT, θ, logΛ, σ_B) | `code/reproduce_numbers.py` | `validation_candidates/full_refit/data/{src}_full_refit.json`, `…/branch_error_summary.json` |
+| Headline adopted branch values (B, kT, θ, logΛ, σ_B) | `code/reproduce_numbers.py` | `validation_candidates/full_refit/data/{src}_full_refit.json`, `…/branch_error_summary.json` |
 | Joint continuum–cyclotron fits | `validation_candidates/full_refit/code/regen_joint_fullrefit.py` | `…/{src}_full_refit.json`, `data/raw/`, Koester cache |
 | Profiled χ²(B), fixed-kT families | `validation_candidates/full_refit/code/plot_full_refit_profiles.py` | `…/{src}_full_refit.json`, `…/{src}_kt_family.npz` |
 | Competing harmonic branches (App. C) | `validation_candidates/full_refit/code/plot_branch_decomposition.py` | `…/{src}_full_refit.json` |

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""reproduce_numbers.py — print the headline magnetic-field results (Table 3).
+"""reproduce_numbers.py — print the headline magnetic-field results.
 
 Reproduces, straight from the stored fit products, the cyclotron parameters
-quoted in the paper:
+of the adopted branches:
 
   * adopted B, kT, theta, log10 Lambda
       <- validation_candidates/full_refit/data/{src}_full_refit.json["adopted_params"]
@@ -14,8 +14,9 @@ quoted in the paper:
     full_refit/data/branch_error_summary.json (computed by branch_errors.py);
     for J0005 (a unique field) it is recomputed here from the MCMC chain.
 
-No fitting is done: this reads the adopted solutions only, so the printed
-numbers are exactly those in Table 3.
+No fitting is done: this reads the adopted solutions only.  The manuscript
+table may differ in the last digit where it quotes posterior medians or
+rounded branch-summary values rather than the chi-squared minimum itself.
 """
 import json
 import os

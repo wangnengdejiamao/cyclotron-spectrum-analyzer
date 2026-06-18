@@ -75,7 +75,7 @@ def scan(src):
     _ = model.cyc_shape(p_ref[3], p_ref[4], p_ref[5], p_ref[6])
     dof = max(len(wb) - 10, 1)
 
-    Bg = np.arange(14.0, 96.0 + 1e-9, 2.0)
+    Bg = np.arange(12.0, 96.0 + 1e-9, 2.0)
     chis, sols_grid = profile_B_full(model, p_ref, Bg, seed=hash(src) % 1000)
     branches = jp.find_branches(Bg, chis, dchi2_max=30.0)
 
