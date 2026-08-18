@@ -38,6 +38,9 @@ directly — so reproducing the figures and numbers needs no grid download.
 To re-fit truly from scratch, download the grid from SVO, point `KOESTER_DIR`
 at it, and delete the cache so it is rebuilt.
 
+The same grid resampled to 1150-60000 A is bundled as
+`data/koester_cache_wide.npz` for the ultraviolet-to-infrared SED figure.
+
 ## Benchmark systems (`data/raw/benchmarks/`)
 
 Phase-differenced cyclotron residual spectra of two well-studied polars,
@@ -51,6 +54,36 @@ used to validate the field recovery:
 The SDSS validation polars (MQ Dra, PZ Vir, SDSS J1344+2044) under
 `data/*_sdss/` are donor-subtracted / extracted SDSS spectra from the SDSS
 public data releases (<https://www.sdss.org/>).
+
+## Archival photometry and dwarf sequence
+
+Compiled by `code/fetch_sed_photometry.py` (VizieR) into
+`data/sed_photometry.json`:
+
+| catalogue | VizieR | bands |
+|---|---|---|
+| GALEX GR6+7 AIS | II/335 | FUV, NUV |
+| SDSS DR16 | V/154 | u g r i z |
+| Pan-STARRS 1 | II/349 | g r i z y |
+| 2MASS PSC | II/246 | J H Ks (no detections) |
+| UKIRT Hemisphere Survey DR11 | II/384 | J K (no detections) |
+| AllWISE | II/328 | W1–W4 |
+| CatWISE2020 | II/365 | W1, W2 |
+| Spitzer SEIP | II/368 | IRAC/MIPS (no detections) |
+
+SPHEREx forced photometry (`data/spherex/`) comes from the IRSA
+spectrophotometry service, which runs Tractor photometry on every Level-2
+image covering a position; `code/fetch_spherex.py` submits the job and
+`code/spherex_bin.py` bins the result. Only J0005+2941 was retrieved; at these
+magnitudes the per-channel S/N is below 2.
+
+`data/eem_dwarf_sequence.txt` is the online dwarf sequence maintained by
+E. Mamajek (version 2022.04.16), which extends Pecaut & Mamajek (2013) with
+absolute magnitudes and WISE colours:
+<https://www.pas.rochester.edu/~emamajek/EEM_dwarf_UBVIJHK_colors_Teff.txt>
+
+Infrared extinction ratios A_λ/A_V for the WISE bands are from
+Wang & Chen (2019); at E(B−V) < 0.07 these corrections are below 0.01 mag.
 
 ## Distances and reddening
 

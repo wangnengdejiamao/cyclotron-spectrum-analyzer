@@ -16,7 +16,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 export CYC_ROOT="$HERE"
 PY="${PYTHON:-python3}"
 
-echo "== Table 3 numbers =="
+echo "== Table 4 numbers =="
 ( cd "$HERE/code" && "$PY" reproduce_numbers.py )
 
 echo; echo "== main-pipeline figures =="
@@ -24,7 +24,10 @@ cd "$HERE/code"
 "$PY" plot_profile_curves.py        # figures/bench_validation.pdf   (Fig 1)
 "$PY" lightcurve_panels.py          # figures/lightcurve_panels.pdf  (Fig 2)
 "$PY" emission_lines.py             # figures/emission_lines.pdf
-"$PY" make_corner.py                # figures/J0005_corner_cyc.pdf   (appendix)
+"$PY" make_corner.py                # figures/J0005_corner_cyc.pdf   (Fig A.1)
+"$PY" plot_corner_full.py           # figures/J0005_corner_full.pdf  (Fig A.2)
+"$PY" sed_figure.py                 # figures/sed_panels.pdf         (Fig 6)
+"$PY" plot_wd_prior.py              # figures/wd_prior_fits.pdf      (Fig D.1)
 
 echo; echo "== joint-fit / branch figures =="
 cd "$HERE/validation_candidates/full_refit/code"

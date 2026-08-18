@@ -1,0 +1,1420 @@
+{
+ "J0005": {
+  "name": "DESI J0005+2941",
+  "distance_pc": 604.0,
+  "distance_err_pc": 98.0,
+  "porb_min": 105.349,
+  "W1": {
+   "m_faintest": 16.81399917602539,
+   "from_catalog": "AllWISE",
+   "m_brightest": 16.756000518798828,
+   "epoch_spread": 0.0579986572265625,
+   "extinction": 0.0050294400000000005,
+   "dist_mod": 8.905184693105658,
+   "M_abs_limit": 7.903785042919731
+  },
+  "W2": {
+   "m_faintest": 16.541000366210938,
+   "from_catalog": "CatWISE",
+   "m_brightest": 16.378999710083008,
+   "epoch_spread": 0.1620006561279297,
+   "extinction": 0.00335296,
+   "dist_mod": 8.905184693105658,
+   "M_abs_limit": 7.632462713105278
+  },
+  "dynamical_excluded": [
+   "K0V",
+   "K1V",
+   "K2V",
+   "K3V",
+   "K4V",
+   "K5V",
+   "K6V",
+   "K7V",
+   "K8V",
+   "K9V",
+   "M0V",
+   "M0.5V",
+   "M1V",
+   "M1.5V",
+   "M2V",
+   "M2.5V",
+   "M3V",
+   "M3.5V",
+   "M4V"
+  ],
+  "photometric_excluded": [],
+  "allowed": [
+   "M4.5V",
+   "M5V",
+   "M5.5V",
+   "M6V",
+   "M6.5V",
+   "M7V",
+   "M7.5V",
+   "M8V",
+   "M8.5V",
+   "M9V",
+   "M9.5V",
+   "L0V",
+   "L1V",
+   "L2V"
+  ],
+  "earliest_allowed": "M4.5V",
+  "ms_donor_at_period": {
+   "spt": "M5.5V",
+   "mass": 0.123,
+   "teff": 2930.0,
+   "R2": 0.16937020219303683,
+   "M_W1": 8.58,
+   "W1_pred": 17.306622654947226
+  },
+  "table": [
+   {
+    "spt": "K0V",
+    "teff": 5270.0,
+    "mass": 0.88,
+    "R2": 0.32635945024808666,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K1V",
+    "teff": 5170.0,
+    "mass": 0.86,
+    "R2": 0.3238680595756064,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K2V",
+    "teff": 5100.0,
+    "mass": 0.82,
+    "R2": 0.3187669249650245,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K3V",
+    "teff": 4830.0,
+    "mass": 0.78,
+    "R2": 0.31349708218379085,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K4V",
+    "teff": 4600.0,
+    "mass": 0.73,
+    "R2": 0.3066499669477926,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K5V",
+    "teff": 4440.0,
+    "mass": 0.7,
+    "R2": 0.3023903879500851,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K6V",
+    "teff": 4300.0,
+    "mass": 0.69,
+    "R2": 0.3009435218530389,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K7V",
+    "teff": 4100.0,
+    "mass": 0.64,
+    "R2": 0.2934913416104746,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K8V",
+    "teff": 3990.0,
+    "mass": 0.62,
+    "R2": 0.29040172961848576,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K9V",
+    "teff": 3930.0,
+    "mass": 0.59,
+    "R2": 0.2856401852448531,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M0V",
+    "teff": 3850.0,
+    "mass": 0.57,
+    "R2": 0.2823754400519647,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M0.5V",
+    "teff": 3770.0,
+    "mass": 0.54,
+    "R2": 0.2773319394426931,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M1V",
+    "teff": 3660.0,
+    "mass": 0.5,
+    "R2": 0.2703078367678036,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M1.5V",
+    "teff": 3620.0,
+    "mass": 0.47,
+    "R2": 0.26478980197469393,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M2V",
+    "teff": 3560.0,
+    "mass": 0.44,
+    "R2": 0.259031667321788,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M2.5V",
+    "teff": 3470.0,
+    "mass": 0.4,
+    "R2": 0.2509315673558926,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M3V",
+    "teff": 3430.0,
+    "mass": 0.37,
+    "R2": 0.24449456544582768,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M3.5V",
+    "teff": 3270.0,
+    "mass": 0.27,
+    "R2": 0.22011850620785597,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M4V",
+    "teff": 3210.0,
+    "mass": 0.23,
+    "R2": 0.20866258381959116,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M4.5V",
+    "teff": 3110.0,
+    "mass": 0.184,
+    "R2": 0.19370518380996093,
+    "M_W1_pred": 7.9765924533616746,
+    "W1_pred": 16.881777146467332,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M5V",
+    "teff": 3060.0,
+    "mass": 0.162,
+    "R2": 0.18565513837313163,
+    "M_W1_pred": 8.10774548834625,
+    "W1_pred": 17.012930181451907,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M5.5V",
+    "teff": 2930.0,
+    "mass": 0.123,
+    "R2": 0.16937020219303683,
+    "M_W1_pred": 8.401437961841566,
+    "W1_pred": 17.306622654947226,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6V",
+    "teff": 2810.0,
+    "mass": 0.102,
+    "R2": 0.15912387983664686,
+    "M_W1_pred": 8.669926038647095,
+    "W1_pred": 17.57511073175275,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6.5V",
+    "teff": 2740.0,
+    "mass": 0.093,
+    "R2": 0.1542989432422678,
+    "M_W1_pred": 8.825037967132845,
+    "W1_pred": 17.730222660238503,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7V",
+    "teff": 2680.0,
+    "mass": 0.09,
+    "R2": 0.1526216479724371,
+    "M_W1_pred": 8.93782553697417,
+    "W1_pred": 17.843010230079827,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7.5V",
+    "teff": 2630.0,
+    "mass": 0.088,
+    "R2": 0.1514826380015524,
+    "M_W1_pred": 8.970475648352567,
+    "W1_pred": 17.875660341458225,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8V",
+    "teff": 2570.0,
+    "mass": 0.085,
+    "R2": 0.14974130398162014,
+    "M_W1_pred": 9.042816202960129,
+    "W1_pred": 17.948000896065786,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8.5V",
+    "teff": 2420.0,
+    "mass": 0.08,
+    "R2": 0.14674567080523732,
+    "M_W1_pred": 9.242340207308917,
+    "W1_pred": 18.147524900414574,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9V",
+    "teff": 2380.0,
+    "mass": 0.079,
+    "R2": 0.14613166500138217,
+    "M_W1_pred": 9.289279195793775,
+    "W1_pred": 18.194463888899435,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9.5V",
+    "teff": 2350.0,
+    "mass": 0.078,
+    "R2": 0.14551245560344714,
+    "M_W1_pred": 9.357106020230667,
+    "W1_pred": 18.262290713336327,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L0V",
+    "teff": 2270.0,
+    "mass": 0.077,
+    "R2": 0.14488793094089567,
+    "M_W1_pred": 9.427839805990374,
+    "W1_pred": 18.333024499096034,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L1V",
+    "teff": 2160.0,
+    "mass": 0.076,
+    "R2": 0.1442579754587339,
+    "M_W1_pred": 9.59341623906223,
+    "W1_pred": 18.49860093216789,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L2V",
+    "teff": 2060.0,
+    "mass": 0.075,
+    "R2": 0.1436224695292605,
+    "M_W1_pred": 9.677746721479979,
+    "W1_pred": 18.582931414585637,
+    "verdict": "allowed"
+   }
+  ]
+ },
+ "J0022": {
+  "name": "DESI J0022+1340",
+  "distance_pc": 583.0,
+  "distance_err_pc": 38.0,
+  "porb_min": null,
+  "W1": {
+   "m_faintest": 16.722000122070312,
+   "from_catalog": "AllWISE",
+   "m_brightest": 16.141000747680664,
+   "epoch_spread": 0.5809993743896484,
+   "extinction": 0.00818493,
+   "dist_mod": 8.82834277379507,
+   "M_abs_limit": 7.885472418275244
+  },
+  "W2": {
+   "m_faintest": 16.555999755859375,
+   "from_catalog": "AllWISE",
+   "m_brightest": 15.5,
+   "epoch_spread": 1.055999755859375,
+   "extinction": 0.00545662,
+   "dist_mod": 8.82834277379507,
+   "M_abs_limit": 7.722200362064305
+  },
+  "dynamical_excluded": [],
+  "photometric_excluded": [
+   "K0V",
+   "K1V",
+   "K2V",
+   "K3V",
+   "K4V",
+   "K5V",
+   "K6V",
+   "K7V",
+   "K8V",
+   "K9V",
+   "M0V",
+   "M0.5V",
+   "M1V",
+   "M1.5V",
+   "M2V",
+   "M2.5V",
+   "M3V",
+   "M3.5V",
+   "M4V",
+   "M4.5V"
+  ],
+  "allowed": [
+   "M5V",
+   "M5.5V",
+   "M6V",
+   "M6.5V",
+   "M7V",
+   "M7.5V",
+   "M8V",
+   "M8.5V",
+   "M9V",
+   "M9.5V",
+   "L0V",
+   "L1V",
+   "L2V"
+  ],
+  "earliest_allowed": "M5V",
+  "ms_donor_at_period": null,
+  "table": [
+   {
+    "spt": "K0V",
+    "teff": 5270.0,
+    "mass": 0.88,
+    "R2": 0.813,
+    "M_W1_pred": 3.757,
+    "W1_pred": 12.58534277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K1V",
+    "teff": 5170.0,
+    "mass": 0.86,
+    "R2": 0.797,
+    "M_W1_pred": 3.8179999999999996,
+    "W1_pred": 12.64634277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K2V",
+    "teff": 5100.0,
+    "mass": 0.82,
+    "R2": 0.783,
+    "M_W1_pred": 3.865,
+    "W1_pred": 12.69334277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K3V",
+    "teff": 4830.0,
+    "mass": 0.78,
+    "R2": 0.755,
+    "M_W1_pred": 4.021,
+    "W1_pred": 12.849342773795069,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K4V",
+    "teff": 4600.0,
+    "mass": 0.73,
+    "R2": 0.713,
+    "M_W1_pred": 4.16,
+    "W1_pred": 12.98834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K5V",
+    "teff": 4440.0,
+    "mass": 0.7,
+    "R2": 0.701,
+    "M_W1_pred": 4.305000000000001,
+    "W1_pred": 13.133342773795071,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K6V",
+    "teff": 4300.0,
+    "mass": 0.69,
+    "R2": 0.669,
+    "M_W1_pred": 4.459,
+    "W1_pred": 13.28734277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K7V",
+    "teff": 4100.0,
+    "mass": 0.64,
+    "R2": 0.63,
+    "M_W1_pred": 4.699999999999999,
+    "W1_pred": 13.52834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K8V",
+    "teff": 3990.0,
+    "mass": 0.62,
+    "R2": 0.615,
+    "M_W1_pred": 4.835,
+    "W1_pred": 13.663342773795069,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "K9V",
+    "teff": 3930.0,
+    "mass": 0.59,
+    "R2": 0.608,
+    "M_W1_pred": 4.893,
+    "W1_pred": 13.721342773795069,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M0V",
+    "teff": 3850.0,
+    "mass": 0.57,
+    "R2": 0.588,
+    "M_W1_pred": 5.03,
+    "W1_pred": 13.85834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M0.5V",
+    "teff": 3770.0,
+    "mass": 0.54,
+    "R2": 0.544,
+    "M_W1_pred": 5.235,
+    "W1_pred": 14.063342773795071,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M1V",
+    "teff": 3660.0,
+    "mass": 0.5,
+    "R2": 0.501,
+    "M_W1_pred": 5.51,
+    "W1_pred": 14.33834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M1.5V",
+    "teff": 3620.0,
+    "mass": 0.47,
+    "R2": 0.482,
+    "M_W1_pred": 5.615,
+    "W1_pred": 14.44334277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M2V",
+    "teff": 3560.0,
+    "mass": 0.44,
+    "R2": 0.446,
+    "M_W1_pred": 5.840000000000001,
+    "W1_pred": 14.668342773795072,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M2.5V",
+    "teff": 3470.0,
+    "mass": 0.4,
+    "R2": 0.421,
+    "M_W1_pred": 6.035,
+    "W1_pred": 14.86334277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M3V",
+    "teff": 3430.0,
+    "mass": 0.37,
+    "R2": 0.361,
+    "M_W1_pred": 6.3999999999999995,
+    "W1_pred": 15.22834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M3.5V",
+    "teff": 3270.0,
+    "mass": 0.27,
+    "R2": 0.3,
+    "M_W1_pred": 6.93,
+    "W1_pred": 15.75834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M4V",
+    "teff": 3210.0,
+    "mass": 0.23,
+    "R2": 0.274,
+    "M_W1_pred": 7.180000000000001,
+    "W1_pred": 16.00834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M4.5V",
+    "teff": 3110.0,
+    "mass": 0.184,
+    "R2": 0.217,
+    "M_W1_pred": 7.7299999999999995,
+    "W1_pred": 16.55834277379507,
+    "verdict": "excluded by W1"
+   },
+   {
+    "spt": "M5V",
+    "teff": 3060.0,
+    "mass": 0.162,
+    "R2": 0.196,
+    "M_W1_pred": 7.989999999999999,
+    "W1_pred": 16.81834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M5.5V",
+    "teff": 2930.0,
+    "mass": 0.123,
+    "R2": 0.156,
+    "M_W1_pred": 8.58,
+    "W1_pred": 17.40834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6V",
+    "teff": 2810.0,
+    "mass": 0.102,
+    "R2": 0.137,
+    "M_W1_pred": 8.995000000000001,
+    "W1_pred": 17.82334277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6.5V",
+    "teff": 2740.0,
+    "mass": 0.093,
+    "R2": 0.126,
+    "M_W1_pred": 9.265,
+    "W1_pred": 18.093342773795072,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7V",
+    "teff": 2680.0,
+    "mass": 0.09,
+    "R2": 0.12,
+    "M_W1_pred": 9.459999999999999,
+    "W1_pred": 18.28834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7.5V",
+    "teff": 2630.0,
+    "mass": 0.088,
+    "R2": 0.116,
+    "M_W1_pred": 9.55,
+    "W1_pred": 18.37834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8V",
+    "teff": 2570.0,
+    "mass": 0.085,
+    "R2": 0.114,
+    "M_W1_pred": 9.635,
+    "W1_pred": 18.46334277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8.5V",
+    "teff": 2420.0,
+    "mass": 0.08,
+    "R2": 0.104,
+    "M_W1_pred": 9.99,
+    "W1_pred": 18.81834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9V",
+    "teff": 2380.0,
+    "mass": 0.079,
+    "R2": 0.102,
+    "M_W1_pred": 10.07,
+    "W1_pred": 18.898342773795072,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9.5V",
+    "teff": 2350.0,
+    "mass": 0.078,
+    "R2": 0.101,
+    "M_W1_pred": 10.15,
+    "W1_pred": 18.97834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L0V",
+    "teff": 2270.0,
+    "mass": 0.077,
+    "R2": 0.102,
+    "M_W1_pred": 10.190000000000001,
+    "W1_pred": 19.01834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L1V",
+    "teff": 2160.0,
+    "mass": 0.076,
+    "R2": 0.0995,
+    "M_W1_pred": 10.4,
+    "W1_pred": 19.22834277379507,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L2V",
+    "teff": 2060.0,
+    "mass": 0.075,
+    "R2": 0.097,
+    "M_W1_pred": 10.53,
+    "W1_pred": 19.35834277379507,
+    "verdict": "allowed"
+   }
+  ]
+ },
+ "J0749": {
+  "name": "DESI J0749+3654",
+  "distance_pc": 946.0,
+  "distance_err_pc": 135.0,
+  "porb_min": 80.4062,
+  "W1": {
+   "m_faintest": 17.45400047302246,
+   "from_catalog": "CatWISE",
+   "m_brightest": 17.29599952697754,
+   "epoch_spread": 0.15800094604492188,
+   "extinction": 0.00657696,
+   "dist_mod": 9.879455682008963,
+   "M_abs_limit": 7.5679678310134975
+  },
+  "W2": {
+   "m_faintest": 17.486000061035156,
+   "from_catalog": "CatWISE",
+   "m_brightest": 17.207000732421875,
+   "epoch_spread": 0.27899932861328125,
+   "extinction": 0.00438464,
+   "dist_mod": 9.879455682008963,
+   "M_abs_limit": 7.602159739026192
+  },
+  "dynamical_excluded": [
+   "K0V",
+   "K1V",
+   "K2V",
+   "K3V",
+   "K4V",
+   "K5V",
+   "K6V",
+   "K7V",
+   "K8V",
+   "K9V",
+   "M0V",
+   "M0.5V",
+   "M1V",
+   "M1.5V",
+   "M2V",
+   "M2.5V",
+   "M3V",
+   "M3.5V",
+   "M4V",
+   "M4.5V"
+  ],
+  "photometric_excluded": [],
+  "allowed": [
+   "M5V",
+   "M5.5V",
+   "M6V",
+   "M6.5V",
+   "M7V",
+   "M7.5V",
+   "M8V",
+   "M8.5V",
+   "M9V",
+   "M9.5V",
+   "L0V",
+   "L1V",
+   "L2V"
+  ],
+  "earliest_allowed": "M5V",
+  "ms_donor_at_period": {
+   "spt": "M6.5V",
+   "mass": 0.093,
+   "teff": 2740.0,
+   "R2": 0.1288652137788304,
+   "M_W1": 9.265,
+   "W1_pred": 19.09562991480926
+  },
+  "table": [
+   {
+    "spt": "K0V",
+    "teff": 5270.0,
+    "mass": 0.88,
+    "R2": 0.272564279710767,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K1V",
+    "teff": 5170.0,
+    "mass": 0.86,
+    "R2": 0.27048355521020023,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K2V",
+    "teff": 5100.0,
+    "mass": 0.82,
+    "R2": 0.2662232615990178,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K3V",
+    "teff": 4830.0,
+    "mass": 0.78,
+    "R2": 0.2618220686788678,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K4V",
+    "teff": 4600.0,
+    "mass": 0.73,
+    "R2": 0.2561035916101701,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K5V",
+    "teff": 4440.0,
+    "mass": 0.7,
+    "R2": 0.2525461365387796,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K6V",
+    "teff": 4300.0,
+    "mass": 0.69,
+    "R2": 0.25133776333163166,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K7V",
+    "teff": 4100.0,
+    "mass": 0.64,
+    "R2": 0.24511395661010021,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K8V",
+    "teff": 3990.0,
+    "mass": 0.62,
+    "R2": 0.24253361807067067,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K9V",
+    "teff": 3930.0,
+    "mass": 0.59,
+    "R2": 0.23855693864090852,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M0V",
+    "teff": 3850.0,
+    "mass": 0.57,
+    "R2": 0.2358303348264261,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M0.5V",
+    "teff": 3770.0,
+    "mass": 0.54,
+    "R2": 0.23161817516706293,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M1V",
+    "teff": 3660.0,
+    "mass": 0.5,
+    "R2": 0.22575188422699558,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M1.5V",
+    "teff": 3620.0,
+    "mass": 0.47,
+    "R2": 0.22114340980512853,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M2V",
+    "teff": 3560.0,
+    "mass": 0.44,
+    "R2": 0.21633441217091307,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M2.5V",
+    "teff": 3470.0,
+    "mass": 0.4,
+    "R2": 0.20956948499901348,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M3V",
+    "teff": 3430.0,
+    "mass": 0.37,
+    "R2": 0.2041935205898935,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M3.5V",
+    "teff": 3270.0,
+    "mass": 0.27,
+    "R2": 0.1838354674575752,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M4V",
+    "teff": 3210.0,
+    "mass": 0.23,
+    "R2": 0.17426787187605838,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M4.5V",
+    "teff": 3110.0,
+    "mass": 0.184,
+    "R2": 0.16177596163147498,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M5V",
+    "teff": 3060.0,
+    "mass": 0.162,
+    "R2": 0.15505283829473565,
+    "M_W1_pred": 8.4988817540137,
+    "W1_pred": 18.37833743602266,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M5.5V",
+    "teff": 2930.0,
+    "mass": 0.123,
+    "R2": 0.14145221512697012,
+    "M_W1_pred": 8.792574227509018,
+    "W1_pred": 18.67202990951798,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6V",
+    "teff": 2810.0,
+    "mass": 0.102,
+    "R2": 0.13289483622885398,
+    "M_W1_pred": 9.061062304314547,
+    "W1_pred": 18.94051798632351,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6.5V",
+    "teff": 2740.0,
+    "mass": 0.093,
+    "R2": 0.1288652137788304,
+    "M_W1_pred": 9.216174232800297,
+    "W1_pred": 19.09562991480926,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7V",
+    "teff": 2680.0,
+    "mass": 0.09,
+    "R2": 0.12746439398722897,
+    "M_W1_pred": 9.328961802641622,
+    "W1_pred": 19.208417484650585,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7.5V",
+    "teff": 2630.0,
+    "mass": 0.088,
+    "R2": 0.12651313171472062,
+    "M_W1_pred": 9.361611914020019,
+    "W1_pred": 19.241067596028984,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8V",
+    "teff": 2570.0,
+    "mass": 0.085,
+    "R2": 0.1250588289435954,
+    "M_W1_pred": 9.43395246862758,
+    "W1_pred": 19.313408150636544,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8.5V",
+    "teff": 2420.0,
+    "mass": 0.08,
+    "R2": 0.12255697830505012,
+    "M_W1_pred": 9.633476472976369,
+    "W1_pred": 19.512932154985332,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9V",
+    "teff": 2380.0,
+    "mass": 0.079,
+    "R2": 0.12204418160331897,
+    "M_W1_pred": 9.680415461461227,
+    "W1_pred": 19.55987114347019,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9.5V",
+    "teff": 2350.0,
+    "mass": 0.078,
+    "R2": 0.1215270390373231,
+    "M_W1_pred": 9.748242285898119,
+    "W1_pred": 19.627697967907082,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L0V",
+    "teff": 2270.0,
+    "mass": 0.077,
+    "R2": 0.1210054573436398,
+    "M_W1_pred": 9.818976071657826,
+    "W1_pred": 19.69843175366679,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L1V",
+    "teff": 2160.0,
+    "mass": 0.076,
+    "R2": 0.12047934001468012,
+    "M_W1_pred": 9.984552504729683,
+    "W1_pred": 19.864008186738644,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L2V",
+    "teff": 2060.0,
+    "mass": 0.075,
+    "R2": 0.11994858714146879,
+    "M_W1_pred": 10.06888298714743,
+    "W1_pred": 19.948338669156392,
+    "verdict": "allowed"
+   }
+  ]
+ },
+ "J0035": {
+  "name": "LAMOST J0035+4333",
+  "distance_pc": 1000.0,
+  "distance_err_pc": 400.0,
+  "porb_min": 143.765,
+  "W1": {
+   "m_faintest": 16.295000076293945,
+   "from_catalog": "CatWISE",
+   "m_brightest": 16.038000106811523,
+   "epoch_spread": 0.2569999694824219,
+   "extinction": 0.007036380000000001,
+   "dist_mod": 10.0,
+   "M_abs_limit": 6.2879636962939465
+  },
+  "W2": {
+   "m_faintest": 15.616999626159668,
+   "from_catalog": "CatWISE",
+   "m_brightest": 15.350000381469727,
+   "epoch_spread": 0.2669992446899414,
+   "extinction": 0.00469092,
+   "dist_mod": 10.0,
+   "M_abs_limit": 5.612308706159668
+  },
+  "dynamical_excluded": [
+   "K0V",
+   "K1V",
+   "K2V",
+   "K3V",
+   "K4V",
+   "K5V",
+   "K6V",
+   "K7V",
+   "K8V",
+   "K9V",
+   "M0V",
+   "M0.5V",
+   "M1V",
+   "M1.5V",
+   "M2V",
+   "M2.5V"
+  ],
+  "photometric_excluded": [],
+  "allowed": [
+   "M3V",
+   "M3.5V",
+   "M4V",
+   "M4.5V",
+   "M5V",
+   "M5.5V",
+   "M6V",
+   "M6.5V",
+   "M7V",
+   "M7.5V",
+   "M8V",
+   "M8.5V",
+   "M9V",
+   "M9.5V",
+   "L0V",
+   "L1V",
+   "L2V"
+  ],
+  "earliest_allowed": "M3V",
+  "ms_donor_at_period": {
+   "spt": "M4.5V",
+   "mass": 0.184,
+   "teff": 3110.0,
+   "R2": 0.23831776132458923,
+   "M_W1": 7.7299999999999995,
+   "W1_pred": 17.52651661617985
+  },
+  "table": [
+   {
+    "spt": "K0V",
+    "teff": 5270.0,
+    "mass": 0.88,
+    "R2": 0.4015238623998462,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K1V",
+    "teff": 5170.0,
+    "mass": 0.86,
+    "R2": 0.3984586752119134,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K2V",
+    "teff": 5100.0,
+    "mass": 0.82,
+    "R2": 0.3921826894241405,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K3V",
+    "teff": 4830.0,
+    "mass": 0.78,
+    "R2": 0.3856991399937428,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K4V",
+    "teff": 4600.0,
+    "mass": 0.73,
+    "R2": 0.37727505374845427,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K5V",
+    "teff": 4440.0,
+    "mass": 0.7,
+    "R2": 0.3720344437092577,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K6V",
+    "teff": 4300.0,
+    "mass": 0.69,
+    "R2": 0.3702543473669585,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K7V",
+    "teff": 4100.0,
+    "mass": 0.64,
+    "R2": 0.36108584254192694,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K8V",
+    "teff": 3990.0,
+    "mass": 0.62,
+    "R2": 0.3572846566427682,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "K9V",
+    "teff": 3930.0,
+    "mass": 0.59,
+    "R2": 0.3514264727095745,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M0V",
+    "teff": 3850.0,
+    "mass": 0.57,
+    "R2": 0.347409818377661,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M0.5V",
+    "teff": 3770.0,
+    "mass": 0.54,
+    "R2": 0.34120474037819964,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M1V",
+    "teff": 3660.0,
+    "mass": 0.5,
+    "R2": 0.33256290440939046,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M1.5V",
+    "teff": 3620.0,
+    "mass": 0.47,
+    "R2": 0.32577400143354,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M2V",
+    "teff": 3560.0,
+    "mass": 0.44,
+    "R2": 0.3186897007819252,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M2.5V",
+    "teff": 3470.0,
+    "mass": 0.4,
+    "R2": 0.30872405271609216,
+    "M_W1_pred": NaN,
+    "verdict": "dynamically excluded"
+   },
+   {
+    "spt": "M3V",
+    "teff": 3430.0,
+    "mass": 0.37,
+    "R2": 0.30080453370954974,
+    "M_W1_pred": 6.79611412136973,
+    "W1_pred": 16.79611412136973,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M3.5V",
+    "teff": 3270.0,
+    "mass": 0.27,
+    "R2": 0.27081438190644525,
+    "M_W1_pred": 7.152247651953099,
+    "W1_pred": 17.152247651953097,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M4V",
+    "teff": 3210.0,
+    "mass": 0.23,
+    "R2": 0.25672002612421696,
+    "M_W1_pred": 7.321454072692385,
+    "W1_pred": 17.321454072692383,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M4.5V",
+    "teff": 3110.0,
+    "mass": 0.184,
+    "R2": 0.23831776132458923,
+    "M_W1_pred": 7.526516616179852,
+    "W1_pred": 17.52651661617985,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M5V",
+    "teff": 3060.0,
+    "mass": 0.162,
+    "R2": 0.22841369593339894,
+    "M_W1_pred": 7.657669651164427,
+    "W1_pred": 17.657669651164426,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M5.5V",
+    "teff": 2930.0,
+    "mass": 0.123,
+    "R2": 0.20837814780082273,
+    "M_W1_pred": 7.9513621246597435,
+    "W1_pred": 17.951362124659745,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6V",
+    "teff": 2810.0,
+    "mass": 0.102,
+    "R2": 0.19577197713591882,
+    "M_W1_pred": 8.21985020146527,
+    "W1_pred": 18.21985020146527,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M6.5V",
+    "teff": 2740.0,
+    "mass": 0.093,
+    "R2": 0.18983580100945227,
+    "M_W1_pred": 8.374962129951022,
+    "W1_pred": 18.374962129951022,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7V",
+    "teff": 2680.0,
+    "mass": 0.09,
+    "R2": 0.18777220495113234,
+    "M_W1_pred": 8.487749699792348,
+    "W1_pred": 18.487749699792346,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M7.5V",
+    "teff": 2630.0,
+    "mass": 0.088,
+    "R2": 0.18637086761441998,
+    "M_W1_pred": 8.520399811170744,
+    "W1_pred": 18.520399811170744,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8V",
+    "teff": 2570.0,
+    "mass": 0.085,
+    "R2": 0.18422848393017258,
+    "M_W1_pred": 8.592740365778306,
+    "W1_pred": 18.592740365778305,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M8.5V",
+    "teff": 2420.0,
+    "mass": 0.08,
+    "R2": 0.1805429212709635,
+    "M_W1_pred": 8.792264370127095,
+    "W1_pred": 18.792264370127093,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9V",
+    "teff": 2380.0,
+    "mass": 0.079,
+    "R2": 0.1797875027233699,
+    "M_W1_pred": 8.83920335861195,
+    "W1_pred": 18.83920335861195,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "M9.5V",
+    "teff": 2350.0,
+    "mass": 0.078,
+    "R2": 0.17902568213290088,
+    "M_W1_pred": 8.907030183048844,
+    "W1_pred": 18.907030183048846,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L0V",
+    "teff": 2270.0,
+    "mass": 0.077,
+    "R2": 0.1782573221099844,
+    "M_W1_pred": 8.977763968808551,
+    "W1_pred": 18.977763968808553,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L1V",
+    "teff": 2160.0,
+    "mass": 0.076,
+    "R2": 0.1774822804859552,
+    "M_W1_pred": 9.143340401880408,
+    "W1_pred": 19.14334040188041,
+    "verdict": "allowed"
+   },
+   {
+    "spt": "L2V",
+    "teff": 2060.0,
+    "mass": 0.075,
+    "R2": 0.17670041008144816,
+    "M_W1_pred": 9.227670884298156,
+    "W1_pred": 19.227670884298156,
+    "verdict": "allowed"
+   }
+  ]
+ }
+}

@@ -1,0 +1,545 @@
+{
+ "J0005": {
+  "ra": 1.49466,
+  "dec": 29.68439,
+  "bands": {
+   "gP1": {
+    "mag": 19.2347,
+    "err": 0.06390000134706497,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.031,
+    "upper_limit": false
+   },
+   "rP1": {
+    "mag": 19.2724,
+    "err": 0.03819999843835831,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.031,
+    "upper_limit": false
+   },
+   "iP1": {
+    "mag": 19.2607,
+    "err": 0.02759999968111515,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.031,
+    "upper_limit": false
+   },
+   "zP1": {
+    "mag": 19.1631,
+    "err": 0.04560000076889992,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.031,
+    "upper_limit": false
+   },
+   "yP1": {
+    "mag": 18.8601,
+    "err": 0.0771000012755394,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.031,
+    "upper_limit": false
+   },
+   "uSDSS": {
+    "mag": 20.917999267578125,
+    "err": 0.094,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.079,
+    "upper_limit": false
+   },
+   "gSDSS": {
+    "mag": 20.733999252319336,
+    "err": 0.03,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.079,
+    "upper_limit": false
+   },
+   "rSDSS": {
+    "mag": 20.44499969482422,
+    "err": 0.03,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.079,
+    "upper_limit": false
+   },
+   "iSDSS": {
+    "mag": 20.639999389648438,
+    "err": 0.051,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.079,
+    "upper_limit": false
+   },
+   "zSDSS": {
+    "mag": 20.15399932861328,
+    "err": 0.129,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.079,
+    "upper_limit": false
+   },
+   "W1": {
+    "mag": 16.81399917602539,
+    "err": 0.09099999815225601,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.337,
+    "upper_limit": false
+   },
+   "W2": {
+    "mag": 16.378999710083008,
+    "err": 0.21199999749660492,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.337,
+    "upper_limit": false
+   },
+   "W3": {
+    "mag": 12.680000305175781,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.337,
+    "upper_limit": true
+   },
+   "W4": {
+    "mag": 9.223999977111816,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.337,
+    "upper_limit": true
+   },
+   "W1cw": {
+    "mag": 16.756000518798828,
+    "err": 0.0430000014603138,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 0.273,
+    "upper_limit": false
+   },
+   "W2cw": {
+    "mag": 16.541000366210938,
+    "err": 0.09600000083446503,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 0.273,
+    "upper_limit": false
+   }
+  },
+  "notes": {
+   "GALEX": "no match",
+   "2MASS": "no match",
+   "UHS": "no match",
+   "SEIP": "no match"
+  }
+ },
+ "J0022": {
+  "ra": 5.72177,
+  "dec": 13.67799,
+  "bands": {
+   "FUV": {
+    "mag": 19.6876,
+    "err": 0.12049999833106995,
+    "system": "AB",
+    "catalog": "GALEX",
+    "sep_arcsec": 0.961,
+    "upper_limit": false
+   },
+   "NUV": {
+    "mag": 20.5212,
+    "err": 0.13369999825954437,
+    "system": "AB",
+    "catalog": "GALEX",
+    "sep_arcsec": 0.961,
+    "upper_limit": false
+   },
+   "gP1": {
+    "mag": 18.3959,
+    "err": 0.03539999946951866,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.036,
+    "upper_limit": false
+   },
+   "rP1": {
+    "mag": 19.6645,
+    "err": 0.11169999837875366,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.036,
+    "upper_limit": false
+   },
+   "iP1": {
+    "mag": 19.2338,
+    "err": 0.040699999779462814,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.036,
+    "upper_limit": false
+   },
+   "zP1": {
+    "mag": 19.1463,
+    "err": 0.0731000006198883,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.036,
+    "upper_limit": false
+   },
+   "yP1": {
+    "mag": 18.8396,
+    "err": 0.07429999858140945,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.036,
+    "upper_limit": false
+   },
+   "uSDSS": {
+    "mag": 20.416000366210938,
+    "err": 0.063,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.175,
+    "upper_limit": false
+   },
+   "gSDSS": {
+    "mag": 20.29800033569336,
+    "err": 0.02,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.175,
+    "upper_limit": false
+   },
+   "rSDSS": {
+    "mag": 20.141000747680664,
+    "err": 0.027,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.175,
+    "upper_limit": false
+   },
+   "iSDSS": {
+    "mag": 19.565000534057617,
+    "err": 0.024,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.175,
+    "upper_limit": false
+   },
+   "zSDSS": {
+    "mag": 19.113000869750977,
+    "err": 0.052,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.175,
+    "upper_limit": false
+   },
+   "W1": {
+    "mag": 16.722000122070312,
+    "err": 0.09700000286102295,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.588,
+    "upper_limit": false
+   },
+   "W2": {
+    "mag": 16.555999755859375,
+    "err": 0.328000009059906,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.588,
+    "upper_limit": false
+   },
+   "W3": {
+    "mag": 11.821999549865723,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.588,
+    "upper_limit": true
+   },
+   "W4": {
+    "mag": 8.743000030517578,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.588,
+    "upper_limit": true
+   },
+   "W1cw": {
+    "mag": 16.141000747680664,
+    "err": 0.03200000151991844,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 0.176,
+    "upper_limit": false
+   },
+   "W2cw": {
+    "mag": 15.5,
+    "err": 0.04699999839067459,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 0.176,
+    "upper_limit": false
+   }
+  },
+  "notes": {
+   "2MASS": "no match",
+   "UHS": "no match",
+   "SEIP": "no match"
+  }
+ },
+ "J0749": {
+  "ra": 117.3213,
+  "dec": 36.90776,
+  "bands": {
+   "NUV": {
+    "mag": 22.1085,
+    "err": 0.3580000102519989,
+    "system": "AB",
+    "catalog": "GALEX",
+    "sep_arcsec": 1.722,
+    "upper_limit": false
+   },
+   "gP1": {
+    "mag": 18.945,
+    "err": 0.03739999979734421,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.026,
+    "upper_limit": false
+   },
+   "rP1": {
+    "mag": 18.9263,
+    "err": 0.09700000286102295,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.026,
+    "upper_limit": false
+   },
+   "iP1": {
+    "mag": 19.2264,
+    "err": 0.08640000224113464,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.026,
+    "upper_limit": false
+   },
+   "zP1": {
+    "mag": 19.2383,
+    "err": 0.06340000033378601,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.026,
+    "upper_limit": false
+   },
+   "yP1": {
+    "mag": 19.2764,
+    "err": 0.08089999854564667,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.026,
+    "upper_limit": false
+   },
+   "uSDSS": {
+    "mag": 19.74799919128418,
+    "err": 0.03,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.118,
+    "upper_limit": false
+   },
+   "gSDSS": {
+    "mag": 18.964000701904297,
+    "err": 0.009,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.118,
+    "upper_limit": false
+   },
+   "rSDSS": {
+    "mag": 18.729000091552734,
+    "err": 0.009,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.118,
+    "upper_limit": false
+   },
+   "iSDSS": {
+    "mag": 18.726999282836914,
+    "err": 0.012,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.118,
+    "upper_limit": false
+   },
+   "zSDSS": {
+    "mag": 18.8700008392334,
+    "err": 0.037,
+    "system": "AB",
+    "catalog": "SDSS16",
+    "sep_arcsec": 0.118,
+    "upper_limit": false
+   },
+   "W1": {
+    "mag": 17.29599952697754,
+    "err": 0.15199999511241913,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 1.036,
+    "upper_limit": false
+   },
+   "W2": {
+    "mag": 17.207000732421875,
+    "err": 0.5339999794960022,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 1.036,
+    "upper_limit": false
+   },
+   "W3": {
+    "mag": 12.456999778747559,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 1.036,
+    "upper_limit": true
+   },
+   "W4": {
+    "mag": 8.508999824523926,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 1.036,
+    "upper_limit": true
+   },
+   "W1cw": {
+    "mag": 17.45400047302246,
+    "err": 0.07699999958276749,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 1.309,
+    "upper_limit": false
+   },
+   "W2cw": {
+    "mag": 17.486000061035156,
+    "err": 0.257999986410141,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 1.309,
+    "upper_limit": false
+   }
+  },
+  "notes": {
+   "2MASS": "no match",
+   "UHS": "no match",
+   "SEIP": "no match"
+  }
+ },
+ "J0035": {
+  "ra": 8.97235,
+  "dec": 43.56152,
+  "bands": {
+   "gP1": {
+    "mag": 18.8893,
+    "err": 0.0763000026345253,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.164,
+    "upper_limit": false
+   },
+   "rP1": {
+    "mag": 18.8791,
+    "err": 0.05490000173449516,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.164,
+    "upper_limit": false
+   },
+   "iP1": {
+    "mag": 18.7398,
+    "err": 0.010400000028312206,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.164,
+    "upper_limit": false
+   },
+   "zP1": {
+    "mag": 18.7999,
+    "err": 0.05209999904036522,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.164,
+    "upper_limit": false
+   },
+   "yP1": {
+    "mag": 18.6883,
+    "err": 0.03460000082850456,
+    "system": "AB",
+    "catalog": "PanSTARRS",
+    "sep_arcsec": 0.164,
+    "upper_limit": false
+   },
+   "W1": {
+    "mag": 16.038000106811523,
+    "err": 0.04800000041723251,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.576,
+    "upper_limit": false
+   },
+   "W2": {
+    "mag": 15.350000381469727,
+    "err": 0.0820000022649765,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.576,
+    "upper_limit": false
+   },
+   "W3": {
+    "mag": 12.708000183105469,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.576,
+    "upper_limit": true
+   },
+   "W4": {
+    "mag": 9.402999877929688,
+    "err": null,
+    "system": "Vega",
+    "catalog": "AllWISE",
+    "sep_arcsec": 0.576,
+    "upper_limit": true
+   },
+   "W1cw": {
+    "mag": 16.295000076293945,
+    "err": 0.032999999821186066,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 0.506,
+    "upper_limit": false
+   },
+   "W2cw": {
+    "mag": 15.616999626159668,
+    "err": 0.041999999433755875,
+    "system": "Vega",
+    "catalog": "CatWISE",
+    "sep_arcsec": 0.506,
+    "upper_limit": false
+   }
+  },
+  "notes": {
+   "GALEX": "no match",
+   "SDSS16": "no match",
+   "2MASS": "no match",
+   "UHS": "no match",
+   "SEIP": "no match"
+  }
+ }
+}
